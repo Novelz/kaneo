@@ -644,6 +644,9 @@
 			"toastFinalOff": "Column unmarked as final",
 			"toastUpdateError": "Failed to update column",
 			"toastIconUpdated": "Column icon updated",
+			"toastColorUpdated": "Column color updated",
+			"pickColorTitle": "Pick column color",
+			"noColor": "No color",
 			"toastDeleted": "Column deleted",
 			"toastDeleteError": "Failed to delete column",
 			"loading": "Loading columns...",
@@ -1046,7 +1049,8 @@
 			"members": "Members",
 			"invitations": "Invitations",
 			"more": "More",
-			"backToBoard": "Back to board"
+			"backToBoard": "Back to board",
+			"users": "Users"
 		},
 		"projectList": {
 			"viewProject": "View Project",
@@ -1826,5 +1830,18 @@
 		"branding": {
 			"poweredBy": "Powered by"
 		}
+	},
+	"users": {
+		"pageTitle": "Users",
+		"title": "Users Overview",
+		"listView": "List",
+		"ganttView": "Gantt",
+		"noAssignedTasks": "No assigned tasks",
+		"noAssignedTasksSubtitle": "Tasks assigned to workspace members will appear here.",
+		"noScheduledTasks": "No scheduled tasks",
+		"noScheduledTasksSubtitle": "Assign start and due dates to tasks to see them in the Gantt view.",
+		"taskCount": "{{count}} task",
+		"taskCount_other": "{{count}} tasks",
+		"userTaskHeader": "User / Task"
 	}
 }

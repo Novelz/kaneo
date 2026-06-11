@@ -28,7 +28,7 @@ import useGetProjects from "@/hooks/queries/project/use-get-projects";
 import useGetTask from "@/hooks/queries/task/use-get-task";
 import { useGetActiveWorkspaceUsers } from "@/hooks/queries/workspace-users/use-get-active-workspace-users";
 import { cn } from "@/lib/cn";
-import { getColumnIcon } from "@/lib/column";
+import { getColumnIcon, resolveColumnColor } from "@/lib/column";
 import { dueDateStatusColors, getDueDateStatus } from "@/lib/due-date-status";
 import { formatDateShort } from "@/lib/format";
 import { getPriorityLabel, getStatusDisplayLabel } from "@/lib/i18n/domain";
@@ -99,6 +99,10 @@ export default function TaskPropertiesSidebar({
   );
   const statusIsFinal = statusColumn?.isFinal ?? false;
   const statusIcon = statusColumn?.icon;
+  const statusColor = resolveColumnColor(
+    task?.status ?? "",
+    statusColumn?.color,
+  );
 
   const projectSlug = project?.slug;
   const taskNumber = task?.number;
@@ -198,13 +202,22 @@ export default function TaskPropertiesSidebar({
                     variant="ghost"
                     size="sm"
                     className="justify-start h-7 px-1.5 gap-1.5"
+                    style={
+                      statusColor
+                        ? { backgroundColor: `${statusColor}20` }
+                        : undefined
+                    }
                   >
                     {getColumnIcon(
                       task.status ?? "",
                       statusIsFinal,
                       statusIcon,
+                      statusColor,
                     )}
-                    <span className="text-xs font-semibold truncate">
+                    <span
+                      className="text-xs font-semibold truncate"
+                      style={statusColor ? { color: statusColor } : undefined}
+                    >
                       {statusLabel}
                     </span>
                   </Button>
@@ -386,13 +399,22 @@ export default function TaskPropertiesSidebar({
                       variant="ghost"
                       size="sm"
                       className="justify-start h-7 px-1.5 gap-1.5"
+                      style={
+                        statusColor
+                          ? { backgroundColor: `${statusColor}20` }
+                          : undefined
+                      }
                     >
                       {getColumnIcon(
                         task.status ?? "",
                         statusIsFinal,
                         statusIcon,
+                        statusColor,
                       )}
-                      <span className="text-xs font-semibold truncate">
+                      <span
+                        className="text-xs font-semibold truncate"
+                        style={statusColor ? { color: statusColor } : undefined}
+                      >
                         {statusLabel}
                       </span>
                     </Button>
@@ -577,13 +599,22 @@ export default function TaskPropertiesSidebar({
                       variant="ghost"
                       size="sm"
                       className="justify-start h-7 px-1.5 gap-1.5 w-full"
+                      style={
+                        statusColor
+                          ? { backgroundColor: `${statusColor}20` }
+                          : undefined
+                      }
                     >
                       {getColumnIcon(
                         task.status ?? "",
                         statusIsFinal,
                         statusIcon,
+                        statusColor,
                       )}
-                      <span className="text-xs font-semibold truncate">
+                      <span
+                        className="text-xs font-semibold truncate"
+                        style={statusColor ? { color: statusColor } : undefined}
+                      >
                         {statusLabel}
                       </span>
                     </Button>

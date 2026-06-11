@@ -9,6 +9,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
+import columnColors from "@/constants/column-colors";
 import columnIcons, {
   DEFAULT_COLUMN_ICON_NAMES,
 } from "@/constants/column-icons";
@@ -40,7 +41,12 @@ export default function ColumnEditor({ projectId }: ColumnEditorProps) {
   const [iconPickerColumnId, setIconPickerColumnId] = useState<string | null>(
     null,
   );
+  const [colorPickerColumnId, setColorPickerColumnId] = useState<string | null>(
+    null,
+  );
+  const [newColumnColor, setNewColumnColor] = useState<string | null>(null);
   const [newIconPickerOpen, setNewIconPickerOpen] = useState(false);
+  const [newColorPickerOpen, setNewColorPickerOpen] = useState(false);
   const [iconSearch, setIconSearch] = useState("");
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
@@ -49,10 +55,15 @@ export default function ColumnEditor({ projectId }: ColumnEditorProps) {
     try {
       await createColumn({
         projectId,
-        data: { name: newColumnName.trim(), icon: newColumnIcon },
+        data: {
+          name: newColumnName.trim(),
+          icon: newColumnIcon,
+          color: newColumnColor ?? undefined,
+        },
       });
       setNewColumnName("");
       setNewColumnIcon("Circle");
+      setNewColumnColor(null);
       toast.success(t("settings:columnEditor.toastCreated"));
     } catch (error) {
       toast.error(
@@ -84,6 +95,20 @@ export default function ColumnEditor({ projectId }: ColumnEditorProps) {
           ? t("settings:columnEditor.toastFinalOn")
           : t("settings:columnEditor.toastFinalOff"),
       );
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : t("settings:columnEditor.toastUpdateError"),
+      );
+    }
+  };
+
+  const handleUpdateColor = async (id: string, color: string | null) => {
+    try {
+      await updateColumn({ id, projectId, data: { color } });
+      setColorPickerColumnId(null);
+      toast.success(t("settings:columnEditor.toastColorUpdated"));
     } catch (error) {
       toast.error(
         error instanceof Error
@@ -231,6 +256,63 @@ export default function ColumnEditor({ projectId }: ColumnEditorProps) {
                 </div>
               </PopoverContent>
             </Popover>
+            <Popover
+              open={colorPickerColumnId === col.id}
+              onOpenChange={(open) =>
+                setColorPickerColumnId(open ? col.id : null)
+              }
+              modal={true}
+            >
+              <PopoverTrigger asChild>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="h-8 w-8 p-0 shrink-0"
+                  title={t("settings:columnEditor.pickColorTitle")}
+                  disabled={!canEdit}
+                >
+                  <span
+                    className="w-4 h-4 rounded-full border border-border"
+                    style={
+                      col.color
+                        ? { backgroundColor: col.color, borderColor: col.color }
+                        : undefined
+                    }
+                  />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-44 p-2" align="start">
+                <div className="grid grid-cols-5 gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => handleUpdateColor(col.id, null)}
+                    className={cn(
+                      "h-7 w-7 rounded-full border-2 border-dashed transition-all hover:scale-110",
+                      !col.color
+                        ? "border-foreground scale-110"
+                        : "border-border",
+                    )}
+                    title={t("settings:columnEditor.noColor")}
+                  />
+                  {columnColors.map((c) => (
+                    <button
+                      key={c.value}
+                      type="button"
+                      onClick={() => handleUpdateColor(col.id, c.value)}
+                      className={cn(
+                        "h-7 w-7 rounded-full border-2 transition-all hover:scale-110",
+                        col.color === c.value
+                          ? "border-foreground scale-110"
+                          : "border-transparent",
+                      )}
+                      style={{ backgroundColor: c.value }}
+                      title={c.label}
+                    />
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
             <Input
               defaultValue={col.name}
               className="h-8 text-sm flex-1"
@@ -353,6 +435,69 @@ export default function ColumnEditor({ projectId }: ColumnEditorProps) {
                     })}
                   </div>
                 </div>
+              </div>
+            </PopoverContent>
+          </Popover>
+          <Popover
+            open={newColorPickerOpen}
+            onOpenChange={setNewColorPickerOpen}
+            modal={true}
+          >
+            <PopoverTrigger asChild>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="h-8 w-8 p-0 shrink-0"
+                title={t("settings:columnEditor.pickColorTitle")}
+              >
+                <span
+                  className="w-4 h-4 rounded-full border border-border"
+                  style={
+                    newColumnColor
+                      ? {
+                          backgroundColor: newColumnColor,
+                          borderColor: newColumnColor,
+                        }
+                      : undefined
+                  }
+                />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-44 p-2" align="start">
+              <div className="grid grid-cols-5 gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setNewColumnColor(null);
+                    setNewColorPickerOpen(false);
+                  }}
+                  className={cn(
+                    "h-7 w-7 rounded-full border-2 border-dashed transition-all hover:scale-110",
+                    !newColumnColor
+                      ? "border-foreground scale-110"
+                      : "border-border",
+                  )}
+                  title={t("settings:columnEditor.noColor")}
+                />
+                {columnColors.map((c) => (
+                  <button
+                    key={c.value}
+                    type="button"
+                    onClick={() => {
+                      setNewColumnColor(c.value);
+                      setNewColorPickerOpen(false);
+                    }}
+                    className={cn(
+                      "h-7 w-7 rounded-full border-2 transition-all hover:scale-110",
+                      newColumnColor === c.value
+                        ? "border-foreground scale-110"
+                        : "border-transparent",
+                    )}
+                    style={{ backgroundColor: c.value }}
+                    title={c.label}
+                  />
+                ))}
               </div>
             </PopoverContent>
           </Popover>

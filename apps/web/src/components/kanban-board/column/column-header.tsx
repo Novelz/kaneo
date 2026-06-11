@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import CreateTaskModal from "@/components/shared/modals/create-task-modal";
 import { useUpdateTask } from "@/hooks/mutations/task/use-update-task";
 import { useWorkspacePermission } from "@/hooks/use-workspace-permission";
-import { getColumnIcon } from "@/lib/column";
+import { getColumnIcon, resolveColumnColor } from "@/lib/column";
 import { toast } from "@/lib/toast";
 import useProjectStore from "@/store/project";
 import type { ProjectWithTasks } from "@/types/project";
@@ -24,6 +24,7 @@ export function ColumnHeader({ column }: ColumnHeaderProps) {
 
   const [isArchiveModalOpen, setIsArchiveModalOpen] = useState(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const columnColor = resolveColumnColor(column.id, column.color);
 
   const handleConfirmArchive = () => {
     if (!column.isFinal || !project) return;
@@ -53,9 +54,12 @@ export function ColumnHeader({ column }: ColumnHeaderProps) {
     <div className="flex items-center justify-between gap-2">
       <div className="flex min-w-0 items-center gap-2">
         <span className="text-muted-foreground">
-          {getColumnIcon(column.id, column.isFinal, column.icon)}
+          {getColumnIcon(column.id, column.isFinal, column.icon, column.color)}
         </span>
-        <span className="truncate text-sm font-medium text-foreground/95">
+        <span
+          className="truncate text-sm font-medium"
+          style={columnColor ? { color: columnColor } : undefined}
+        >
           {column.name}
         </span>
         <span className="rounded-md bg-muted px-1.5 py-0.5 text-xs font-medium text-muted-foreground">

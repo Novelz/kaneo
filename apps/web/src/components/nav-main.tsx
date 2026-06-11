@@ -49,6 +49,14 @@ export function NavMain() {
       isActive: window.location.pathname === "/dashboard/invitations",
       badge: pendingCount > 0 ? pendingCount : null,
     },
+    {
+      title: t("navigation:sidebar.users"),
+      url: `/dashboard/workspace/${workspace.id}/users`,
+      isActive:
+        window.location.pathname ===
+        `/dashboard/workspace/${workspace.id}/users`,
+      badge: null,
+    },
   ];
 
   return (

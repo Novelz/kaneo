@@ -2,10 +2,28 @@ import db from "../../database";
 import { columnTable, projectTable } from "../../database/schema";
 
 export const DEFAULT_PROJECT_COLUMNS = [
-  { name: "To Do", slug: "to-do", position: 0, isFinal: false },
-  { name: "In Progress", slug: "in-progress", position: 1, isFinal: false },
-  { name: "In Review", slug: "in-review", position: 2, isFinal: false },
-  { name: "Done", slug: "done", position: 3, isFinal: true },
+  {
+    name: "To Do",
+    slug: "to-do",
+    position: 0,
+    isFinal: false,
+    color: "#64748b",
+  },
+  {
+    name: "In Progress",
+    slug: "in-progress",
+    position: 1,
+    isFinal: false,
+    color: "#3b82f6",
+  },
+  {
+    name: "In Review",
+    slug: "in-review",
+    position: 2,
+    isFinal: false,
+    color: "#8b5cf6",
+  },
+  { name: "Done", slug: "done", position: 3, isFinal: true, color: "#22c55e" },
 ] as const;
 
 async function createProject(
@@ -33,6 +51,7 @@ async function createProject(
           slug: col.slug,
           position: col.position,
           isFinal: col.isFinal,
+          color: col.color,
         });
       }
     }

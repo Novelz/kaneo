@@ -6296,9 +6296,12 @@
 						},
 						"inviteMember": {
 							"type": "string"
+						},
+						"addUserDirectly": {
+							"type": "string"
 						}
 					},
-					"required": ["pageTitle", "inviteMember"]
+					"required": ["pageTitle", "inviteMember", "addUserDirectly"]
 				},
 				"inviteModal": {
 					"type": "object",
@@ -6419,9 +6422,71 @@
 						"cancelInviteSuccess",
 						"cancelInviteError"
 					]
+				},
+				"ghostUserModal": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"emailLabel": {
+							"type": "string"
+						},
+						"emailPlaceholder": {
+							"type": "string"
+						},
+						"nameLabel": {
+							"type": "string"
+						},
+						"namePlaceholder": {
+							"type": "string"
+						},
+						"passwordLabel": {
+							"type": "string"
+						},
+						"passwordPlaceholder": {
+							"type": "string"
+						},
+						"roleLabel": {
+							"type": "string"
+						},
+						"submit": {
+							"type": "string"
+						},
+						"success": {
+							"type": "string"
+						},
+						"successExisting": {
+							"type": "string"
+						},
+						"error": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"title",
+						"emailLabel",
+						"emailPlaceholder",
+						"nameLabel",
+						"namePlaceholder",
+						"passwordLabel",
+						"passwordPlaceholder",
+						"roleLabel",
+						"submit",
+						"success",
+						"successExisting",
+						"error"
+					]
 				}
 			},
-			"required": ["roles", "members", "inviteModal", "membersTable"]
+			"required": [
+				"roles",
+				"members",
+				"inviteModal",
+				"membersTable",
+				"ghostUserModal"
+			]
 		},
 		"publicProject": {
 			"type": "object",

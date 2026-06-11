@@ -1732,7 +1732,8 @@
 		},
 		"members": {
 			"pageTitle": "Учасники",
-			"inviteMember": "Запросити учасника"
+			"inviteMember": "Запросити учасника",
+			"addUserDirectly": "Додати користувача"
 		},
 		"inviteModal": {
 			"title": "Запросити учасника команди",
@@ -1764,6 +1765,20 @@
 			"removeError": "Не вдалося видалити учасника команди",
 			"cancelInviteSuccess": "Запрошення успішно скасовано",
 			"cancelInviteError": "Не вдалося скасувати запрошення"
+		},
+		"ghostUserModal": {
+			"title": "Додати користувача безпосередньо",
+			"emailLabel": "Ел. пошта",
+			"emailPlaceholder": "колега@компанія.ua",
+			"nameLabel": "Повне ім'я",
+			"namePlaceholder": "Іван Іваненко",
+			"passwordLabel": "Пароль",
+			"passwordPlaceholder": "Мін. 8 символів",
+			"roleLabel": "Роль",
+			"submit": "Створити та додати",
+			"success": "Користувача створено та додано до робочого простору",
+			"successExisting": "Існуючого користувача додано до робочого простору",
+			"error": "Не вдалося створити користувача"
 		}
 	},
 	"publicProject": {

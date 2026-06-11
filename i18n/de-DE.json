@@ -1733,7 +1733,8 @@
 		},
 		"members": {
 			"pageTitle": "Mitglieder",
-			"inviteMember": "Mitglied einladen"
+			"inviteMember": "Mitglied einladen",
+			"addUserDirectly": "Benutzer direkt hinzufügen"
 		},
 		"inviteModal": {
 			"title": "Teammitglied einladen",
@@ -1765,6 +1766,20 @@
 			"removeError": "Teammitglied konnte nicht entfernt werden",
 			"cancelInviteSuccess": "Einladung erfolgreich abgebrochen",
 			"cancelInviteError": "Einladung konnte nicht abgebrochen werden"
+		},
+		"ghostUserModal": {
+			"title": "Benutzer direkt hinzufügen",
+			"emailLabel": "E-Mail",
+			"emailPlaceholder": "kollege@unternehmen.de",
+			"nameLabel": "Vollständiger Name",
+			"namePlaceholder": "Max Mustermann",
+			"passwordLabel": "Passwort",
+			"passwordPlaceholder": "Min. 8 Zeichen",
+			"roleLabel": "Rolle",
+			"submit": "Erstellen & Hinzufügen",
+			"success": "Benutzer erstellt und zum Arbeitsbereich hinzugefügt",
+			"successExisting": "Bestehender Benutzer zum Arbeitsbereich hinzugefügt",
+			"error": "Benutzer konnte nicht erstellt werden"
 		}
 	},
 	"publicProject": {

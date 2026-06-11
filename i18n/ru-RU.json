@@ -1774,7 +1774,8 @@
 		},
 		"members": {
 			"pageTitle": "Участники",
-			"inviteMember": "Пригласить участника"
+			"inviteMember": "Пригласить участника",
+			"addUserDirectly": "Добавить пользователя"
 		},
 		"inviteModal": {
 			"title": "Пригласить участника команды",
@@ -1806,6 +1807,20 @@
 			"removeError": "Не удалось удалить участника команды",
 			"cancelInviteSuccess": "Приглашение успешно отменено",
 			"cancelInviteError": "Не удалось отменить приглашение"
+		},
+		"ghostUserModal": {
+			"title": "Добавить пользователя напрямую",
+			"emailLabel": "Эл. почта",
+			"emailPlaceholder": "коллега@компания.ru",
+			"nameLabel": "Полное имя",
+			"namePlaceholder": "Иван Иванов",
+			"passwordLabel": "Пароль",
+			"passwordPlaceholder": "Мин. 8 символов",
+			"roleLabel": "Роль",
+			"submit": "Создать и добавить",
+			"success": "Пользователь создан и добавлен в рабочее пространство",
+			"successExisting": "Существующий пользователь добавлен в рабочее пространство",
+			"error": "Не удалось создать пользователя"
 		}
 	},
 	"publicProject": {

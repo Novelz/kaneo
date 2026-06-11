@@ -1733,7 +1733,8 @@
 		},
 		"members": {
 			"pageTitle": "멤버",
-			"inviteMember": "멤버 초대"
+			"inviteMember": "멤버 초대",
+			"addUserDirectly": "사용자 직접 추가"
 		},
 		"inviteModal": {
 			"title": "팀 멤버 초대",
@@ -1765,6 +1766,20 @@
 			"removeError": "팀 멤버 제거에 실패했습니다",
 			"cancelInviteSuccess": "초대가 취소되었습니다",
 			"cancelInviteError": "초대 취소에 실패했습니다"
+		},
+		"ghostUserModal": {
+			"title": "사용자 직접 추가",
+			"emailLabel": "이메일",
+			"emailPlaceholder": "colleague@company.com",
+			"nameLabel": "전체 이름",
+			"namePlaceholder": "홍길동",
+			"passwordLabel": "비밀번호",
+			"passwordPlaceholder": "최소 8자",
+			"roleLabel": "역할",
+			"submit": "생성 및 추가",
+			"success": "사용자가 생성되고 워크스페이스에 추가되었습니다",
+			"successExisting": "기존 사용자가 워크스페이스에 추가되었습니다",
+			"error": "사용자 생성에 실패했습니다"
 		}
 	},
 	"publicProject": {

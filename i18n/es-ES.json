@@ -1505,7 +1505,8 @@
 		},
 		"members": {
 			"pageTitle": "Miembros",
-			"inviteMember": "Invitar miembro"
+			"inviteMember": "Invitar miembro",
+			"addUserDirectly": "Agregar usuario directamente"
 		},
 		"inviteModal": {
 			"title": "Invitar miembro al equipo",
@@ -1537,6 +1538,20 @@
 			"removeError": "Error al eliminar miembro del equipo",
 			"cancelInviteSuccess": "Invitación cancelada correctamente",
 			"cancelInviteError": "Error al cancelar invitación"
+		},
+		"ghostUserModal": {
+			"title": "Agregar usuario directamente",
+			"emailLabel": "Correo electrónico",
+			"emailPlaceholder": "colega@empresa.com",
+			"nameLabel": "Nombre completo",
+			"namePlaceholder": "Juan García",
+			"passwordLabel": "Contraseña",
+			"passwordPlaceholder": "Mín. 8 caracteres",
+			"roleLabel": "Rol",
+			"submit": "Crear y agregar",
+			"success": "Usuario creado y agregado al espacio de trabajo",
+			"successExisting": "Usuario existente agregado al espacio de trabajo",
+			"error": "Error al crear el usuario"
 		}
 	},
 	"publicProject": {

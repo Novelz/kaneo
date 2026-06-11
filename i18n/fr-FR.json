@@ -1731,7 +1731,8 @@
 		},
 		"members": {
 			"pageTitle": "Membres",
-			"inviteMember": "Inviter un membre"
+			"inviteMember": "Inviter un membre",
+			"addUserDirectly": "Ajouter un utilisateur"
 		},
 		"inviteModal": {
 			"title": "Inviter un membre de l'équipe",
@@ -1763,6 +1764,20 @@
 			"removeError": "Échec de la suppression du membre de l'équipe",
 			"cancelInviteSuccess": "Invitation annulée avec succès",
 			"cancelInviteError": "Échec de l'annulation de l'invitation"
+		},
+		"ghostUserModal": {
+			"title": "Ajouter un utilisateur directement",
+			"emailLabel": "E-mail",
+			"emailPlaceholder": "collegue@entreprise.fr",
+			"nameLabel": "Nom complet",
+			"namePlaceholder": "Jean Dupont",
+			"passwordLabel": "Mot de passe",
+			"passwordPlaceholder": "Min. 8 caractères",
+			"roleLabel": "Rôle",
+			"submit": "Créer & Ajouter",
+			"success": "Utilisateur créé et ajouté à l'espace de travail",
+			"successExisting": "Utilisateur existant ajouté à l'espace de travail",
+			"error": "Échec de la création de l'utilisateur"
 		}
 	},
 	"publicProject": {

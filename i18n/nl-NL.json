@@ -1506,7 +1506,8 @@
 		},
 		"members": {
 			"pageTitle": "Leden",
-			"inviteMember": "Lid uitnodigen"
+			"inviteMember": "Lid uitnodigen",
+			"addUserDirectly": "Gebruiker direct toevoegen"
 		},
 		"inviteModal": {
 			"title": "Teamlid uitnodigen",
@@ -1538,6 +1539,20 @@
 			"removeError": "Verwijderen teamlid mislukt",
 			"cancelInviteSuccess": "Uitnodiging succesvol geannuleerd",
 			"cancelInviteError": "Annuleren uitnodiging mislukt"
+		},
+		"ghostUserModal": {
+			"title": "Gebruiker direct toevoegen",
+			"emailLabel": "E-mail",
+			"emailPlaceholder": "collega@bedrijf.nl",
+			"nameLabel": "Volledige naam",
+			"namePlaceholder": "Jan Janssen",
+			"passwordLabel": "Wachtwoord",
+			"passwordPlaceholder": "Min. 8 tekens",
+			"roleLabel": "Rol",
+			"submit": "Aanmaken & Toevoegen",
+			"success": "Gebruiker aangemaakt en aan werkruimte toegevoegd",
+			"successExisting": "Bestaande gebruiker aan werkruimte toegevoegd",
+			"error": "Gebruiker aanmaken mislukt"
 		}
 	},
 	"publicProject": {

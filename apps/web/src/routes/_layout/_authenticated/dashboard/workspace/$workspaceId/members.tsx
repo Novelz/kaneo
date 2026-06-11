@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import WorkspaceLayout from "@/components/common/workspace-layout";
 import PageTitle from "@/components/page-title";
+import CreateGhostUserModal from "@/components/team/create-ghost-user-modal";
 import InviteTeamMemberModal from "@/components/team/invite-team-member-modal";
 import MembersTable from "@/components/team/members-table";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,7 @@ function RouteComponent() {
   const { canInviteUsers } = useWorkspacePermission();
   const canInvite = Boolean(canInviteUsers());
   const [isInviteOpen, setIsInviteOpen] = useState(false);
+  const [isGhostOpen, setIsGhostOpen] = useState(false);
 
   return (
     <>
@@ -31,15 +33,26 @@ function RouteComponent() {
         title={t("team:members.pageTitle")}
         headerActions={
           canInvite ? (
-            <Button
-              variant="outline"
-              size="xs"
-              onClick={() => setIsInviteOpen(true)}
-              className="gap-1"
-            >
-              <UserPlus className="w-3 h-3" />
-              {t("team:members.inviteMember")}
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="xs"
+                onClick={() => setIsInviteOpen(true)}
+                className="gap-1"
+              >
+                <UserPlus className="w-3 h-3" />
+                {t("team:members.inviteMember")}
+              </Button>
+              <Button
+                variant="outline"
+                size="xs"
+                onClick={() => setIsGhostOpen(true)}
+                className="gap-1"
+              >
+                <UserPlus className="w-3 h-3" />
+                {t("team:members.addUserDirectly")}
+              </Button>
+            </div>
           ) : null
         }
       >
@@ -52,6 +65,10 @@ function RouteComponent() {
         <InviteTeamMemberModal
           open={isInviteOpen}
           onClose={() => setIsInviteOpen(false)}
+        />
+        <CreateGhostUserModal
+          open={isGhostOpen}
+          onClose={() => setIsGhostOpen(false)}
         />
       </WorkspaceLayout>
     </>

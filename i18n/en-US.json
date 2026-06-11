@@ -1739,7 +1739,8 @@
 		},
 		"members": {
 			"pageTitle": "Members",
-			"inviteMember": "Invite member"
+			"inviteMember": "Invite member",
+			"addUserDirectly": "Add user directly"
 		},
 		"inviteModal": {
 			"title": "Invite Team Member",
@@ -1773,6 +1774,20 @@
 			"cancelInviteError": "Failed to cancel invitation",
 			"roleUpdateSuccess": "Role updated",
 			"roleUpdateError": "Failed to update role"
+		},
+		"ghostUserModal": {
+			"title": "Add User Directly",
+			"emailLabel": "Email",
+			"emailPlaceholder": "colleague@company.com",
+			"nameLabel": "Full Name",
+			"namePlaceholder": "Jane Smith",
+			"passwordLabel": "Password",
+			"passwordPlaceholder": "Min. 8 characters",
+			"roleLabel": "Role",
+			"submit": "Create & Add",
+			"success": "User created and added to workspace",
+			"successExisting": "Existing user added to workspace",
+			"error": "Failed to create user"
 		}
 	},
 	"publicProject": {

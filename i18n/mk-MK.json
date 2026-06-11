@@ -1731,7 +1731,8 @@
 		},
 		"members": {
 			"pageTitle": "Членови",
-			"inviteMember": "Покани член"
+			"inviteMember": "Покани член",
+			"addUserDirectly": "Add user directly"
 		},
 		"inviteModal": {
 			"title": "Покани член на тим",
@@ -1763,6 +1764,20 @@
 			"removeError": "Неуспешно отстранување на член на тим",
 			"cancelInviteSuccess": "Поканата е успешно откажана",
 			"cancelInviteError": "Неуспешно откажување на покана"
+		},
+		"ghostUserModal": {
+			"title": "Add User Directly",
+			"emailLabel": "Email",
+			"emailPlaceholder": "colleague@company.com",
+			"nameLabel": "Full Name",
+			"namePlaceholder": "Jane Smith",
+			"passwordLabel": "Password",
+			"passwordPlaceholder": "Min. 8 characters",
+			"roleLabel": "Role",
+			"submit": "Create & Add",
+			"success": "User created and added to workspace",
+			"successExisting": "Existing user added to workspace",
+			"error": "Failed to create user"
 		}
 	},
 	"publicProject": {

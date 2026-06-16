@@ -1842,6 +1842,8 @@
 		"noScheduledTasksSubtitle": "Assign start and due dates to tasks to see them in the Gantt view.",
 		"taskCount": "{{count}} task",
 		"taskCount_other": "{{count}} tasks",
-		"userTaskHeader": "User / Task"
+		"userTaskHeader": "User / Task",
+		"filterStatus": "Status",
+		"allStatuses": "All statuses"
 	}
 }

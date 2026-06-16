@@ -14,6 +14,7 @@ import {
 import {
   ChevronDown,
   ChevronRight,
+  Filter,
   GanttChartSquare,
   LayoutList,
 } from "lucide-react";
@@ -25,6 +26,11 @@ import PageTitle from "@/components/page-title";
 import TaskDetailsSheet from "@/components/task/task-details-sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/menu";
 import { useGetWorkspaceTasksByUser } from "@/hooks/queries/workspace/use-get-workspace-tasks-by-user";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/cn";
@@ -67,6 +73,9 @@ function RouteComponent() {
   const isMobile = useIsMobile();
   const [view, setView] = useState<"list" | "gantt">("list");
   const [expandedUsers, setExpandedUsers] = useState<Set<string>>(new Set());
+  const [selectedStatuses, setSelectedStatuses] = useState<Set<string>>(
+    new Set(),
+  );
   const timelineTrackRef = useRef<HTMLDivElement>(null);
   const [pixelsPerDay, setPixelsPerDay] = useState(44);
 
@@ -97,6 +106,30 @@ function RouteComponent() {
 
   function closeTask() {
     navigate({ to: ".", search: {}, replace: true });
+  }
+
+  const allStatuses = useMemo(() => {
+    const seen = new Set<string>();
+    for (const user of users) {
+      for (const project of user.projects) {
+        for (const task of project.tasks) {
+          seen.add(task.status);
+        }
+      }
+    }
+    return [...seen].sort();
+  }, [users]);
+
+  function toggleStatus(status: string) {
+    setSelectedStatuses((prev) => {
+      const next = new Set(prev);
+      if (next.has(status)) {
+        next.delete(status);
+      } else {
+        next.add(status);
+      }
+      return next;
+    });
   }
 
   // Flat list of all scheduled tasks for the gantt timeline
@@ -214,31 +247,108 @@ function RouteComponent() {
       <WorkspaceLayout
         title={t("users:pageTitle")}
         headerActions={
-          <div className="flex items-center gap-1 rounded-md border border-border/70 p-0.5">
-            <Button
-              variant="ghost"
-              size="xs"
-              className={cn(
-                "h-6 gap-1 px-2 text-xs",
-                view === "list" && "bg-background shadow-xs",
-              )}
-              onClick={() => setView("list")}
-            >
-              <LayoutList className="size-3" />
-              {t("users:listView")}
-            </Button>
-            <Button
-              variant="ghost"
-              size="xs"
-              className={cn(
-                "h-6 gap-1 px-2 text-xs",
-                view === "gantt" && "bg-background shadow-xs",
-              )}
-              onClick={() => setView("gantt")}
-            >
-              <GanttChartSquare className="size-3" />
-              {t("users:ganttView")}
-            </Button>
+          <div className="flex items-center gap-2">
+            {view === "list" && allStatuses.length > 0 && (
+              <DropdownMenu>
+                <DropdownMenuTrigger
+                  render={
+                    <button
+                      type="button"
+                      className={cn(
+                        "inline-flex h-7 items-center gap-1.5 rounded-md border px-2.5 text-xs font-medium outline-none ring-0",
+                        selectedStatuses.size > 0
+                          ? "border-primary/50 bg-primary/8 text-primary hover:bg-primary/12"
+                          : "border-border bg-background text-foreground hover:bg-accent/60",
+                      )}
+                    />
+                  }
+                >
+                  <Filter className="size-3" />
+                  {t("users:filterStatus")}
+                  {selectedStatuses.size > 0 && (
+                    <span className="flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-semibold text-primary-foreground">
+                      {selectedStatuses.size}
+                    </span>
+                  )}
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-48 p-1" align="end">
+                  <button
+                    type="button"
+                    className={cn(
+                      "flex h-7 w-full items-center gap-2 rounded-md px-2 text-left text-xs",
+                      selectedStatuses.size === 0
+                        ? "bg-accent text-accent-foreground"
+                        : "text-foreground/90 hover:bg-accent/60",
+                    )}
+                    onClick={() => setSelectedStatuses(new Set())}
+                  >
+                    <span
+                      className={cn(
+                        "inline-flex size-4 shrink-0 items-center justify-center rounded-[4px] border",
+                        selectedStatuses.size === 0
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-input bg-background",
+                      )}
+                    >
+                      {selectedStatuses.size === 0 ? "✓" : null}
+                    </span>
+                    {t("users:allStatuses")}
+                  </button>
+                  <div className="my-1 h-px bg-border/60" />
+                  {allStatuses.map((status) => (
+                    <button
+                      key={status}
+                      type="button"
+                      className={cn(
+                        "flex h-7 w-full items-center gap-2 rounded-md px-2 text-left text-xs",
+                        selectedStatuses.has(status)
+                          ? "bg-accent text-accent-foreground"
+                          : "text-foreground/90 hover:bg-accent/60",
+                      )}
+                      onClick={() => toggleStatus(status)}
+                    >
+                      <span
+                        className={cn(
+                          "inline-flex size-4 shrink-0 items-center justify-center rounded-[4px] border",
+                          selectedStatuses.has(status)
+                            ? "border-primary bg-primary text-primary-foreground"
+                            : "border-input bg-background",
+                        )}
+                      >
+                        {selectedStatuses.has(status) ? "✓" : null}
+                      </span>
+                      <span className="truncate">{getStatusLabel(status)}</span>
+                    </button>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+            <div className="flex items-center gap-1 rounded-md border border-border/70 p-0.5">
+              <Button
+                variant="ghost"
+                size="xs"
+                className={cn(
+                  "h-6 gap-1 px-2 text-xs",
+                  view === "list" && "bg-background shadow-xs",
+                )}
+                onClick={() => setView("list")}
+              >
+                <LayoutList className="size-3" />
+                {t("users:listView")}
+              </Button>
+              <Button
+                variant="ghost"
+                size="xs"
+                className={cn(
+                  "h-6 gap-1 px-2 text-xs",
+                  view === "gantt" && "bg-background shadow-xs",
+                )}
+                onClick={() => setView("gantt")}
+              >
+                <GanttChartSquare className="size-3" />
+                {t("users:ganttView")}
+              </Button>
+            </div>
           </div>
         }
       >
@@ -308,47 +418,56 @@ function RouteComponent() {
                             </span>
                           </div>
                           <div className="divide-y divide-border/30">
-                            {project.tasks.map((task) => (
-                              <button
-                                key={task.id}
-                                type="button"
-                                className="flex w-full items-center gap-3 px-8 py-2 text-left hover:bg-background transition-colors"
-                                onClick={() =>
-                                  openTask(task.id, task.projectId)
-                                }
-                              >
-                                <span
-                                  className="shrink-0 rounded-full px-2 py-px text-[10px] font-medium uppercase tracking-wide"
-                                  style={(() => {
-                                    const c = resolveColumnColor(
-                                      task.status,
-                                      task.columnColor,
-                                    );
-                                    return c
-                                      ? { backgroundColor: `${c}20`, color: c }
-                                      : undefined;
-                                  })()}
+                            {project.tasks
+                              .filter(
+                                (task) =>
+                                  selectedStatuses.size === 0 ||
+                                  selectedStatuses.has(task.status),
+                              )
+                              .map((task) => (
+                                <button
+                                  key={task.id}
+                                  type="button"
+                                  className="flex w-full items-center gap-3 px-8 py-2 text-left hover:bg-background transition-colors"
+                                  onClick={() =>
+                                    openTask(task.id, task.projectId)
+                                  }
                                 >
-                                  {getStatusLabel(task.status)}
-                                </span>
-                                <span className="flex-1 truncate text-xs text-foreground">
-                                  {task.title}
-                                </span>
-                                <span className="shrink-0 text-[10px] text-muted-foreground">
-                                  {project.slug}-{task.number}
-                                </span>
-                                {task.priority && (
-                                  <span className="shrink-0 text-[10px] text-muted-foreground hidden sm:block">
-                                    {getPriorityLabel(task.priority)}
+                                  <span
+                                    className="shrink-0 rounded-full px-2 py-px text-[10px] font-medium uppercase tracking-wide"
+                                    style={(() => {
+                                      const c = resolveColumnColor(
+                                        task.status,
+                                        task.columnColor,
+                                      );
+                                      return c
+                                        ? {
+                                            backgroundColor: `${c}20`,
+                                            color: c,
+                                          }
+                                        : undefined;
+                                    })()}
+                                  >
+                                    {getStatusLabel(task.status)}
                                   </span>
-                                )}
-                                {task.dueDate && (
-                                  <span className="shrink-0 text-[10px] text-muted-foreground hidden sm:block">
-                                    {format(parseISO(task.dueDate), "MMM d")}
+                                  <span className="flex-1 truncate text-xs text-foreground">
+                                    {task.title}
                                   </span>
-                                )}
-                              </button>
-                            ))}
+                                  <span className="shrink-0 text-[10px] text-muted-foreground">
+                                    {project.slug}-{task.number}
+                                  </span>
+                                  {task.priority && (
+                                    <span className="shrink-0 text-[10px] text-muted-foreground hidden sm:block">
+                                      {getPriorityLabel(task.priority)}
+                                    </span>
+                                  )}
+                                  {task.dueDate && (
+                                    <span className="shrink-0 text-[10px] text-muted-foreground hidden sm:block">
+                                      {format(parseISO(task.dueDate), "MMM d")}
+                                    </span>
+                                  )}
+                                </button>
+                              ))}
                           </div>
                         </div>
                       ))}

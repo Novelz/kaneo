@@ -148,7 +148,7 @@ function InvitationsPage() {
               orientation="vertical"
               className="mx-1.5 data-[orientation=vertical]:h-2.5"
             />
-            <h1 className="text-xs text-card-foreground">
+            <h1 className="text-sm text-card-foreground">
               {t("invitations:pendingInvitations")}
             </h1>
           </div>

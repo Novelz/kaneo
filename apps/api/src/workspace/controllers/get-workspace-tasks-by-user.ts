@@ -1,4 +1,4 @@
-import { and, asc, eq } from "drizzle-orm";
+import { and, asc, eq, ne } from "drizzle-orm";
 import db from "../../database";
 import {
   columnTable,
@@ -66,7 +66,14 @@ async function getWorkspaceTasksByUser(
         eq(columnTable.slug, taskTable.status),
       ),
     )
-    .where(eq(projectTable.workspaceId, workspaceId))
+    .where(
+      and(
+        eq(projectTable.workspaceId, workspaceId),
+        ne(taskTable.status, "planned"),
+        ne(taskTable.status, "archived"),
+        ne(taskTable.status, "to-triage"),
+      ),
+    )
     .orderBy(
       asc(userTable.name),
       asc(projectTable.name),

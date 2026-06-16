@@ -1269,7 +1269,8 @@
 			"in-review": "In Prüfung",
 			"done": "Erledigt",
 			"archived": "Archiviert",
-			"planned": "Geplant"
+			"planned": "Geplant",
+			"to-triage": "Zur Triage"
 		},
 		"priority": {
 			"label": "Priorität",
@@ -1500,6 +1501,7 @@
 			"filter": "Filter",
 			"addFilter": "Filter hinzufügen...",
 			"sections": {
+				"to-triage": "Zur Triage",
 				"planned": "Geplant",
 				"archived": "Archiviert"
 			},
@@ -1618,6 +1620,7 @@
 		"actions": {
 			"archive": "Archivieren",
 			"markAsPlanned": "Als geplant markieren",
+			"markAsToTriage": "Als Zur Triage markieren",
 			"delete": "Löschen..."
 		},
 		"bulk": {

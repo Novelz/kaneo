@@ -16,7 +16,7 @@ type ProjectWithTasksRaw = TasksApiResponse["data"];
 
 export type ProjectWithTasks = Omit<
   ProjectWithTasksRaw,
-  "archivedTasks" | "columns" | "plannedTasks"
+  "archivedTasks" | "columns" | "plannedTasks" | "toTriageTasks"
 > & {
   archivedTasks: Task[];
   columns: Array<
@@ -25,4 +25,5 @@ export type ProjectWithTasks = Omit<
     }
   >;
   plannedTasks: Task[];
+  toTriageTasks: Task[];
 };

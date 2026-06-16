@@ -304,6 +304,10 @@ export default function TaskCardContextMenuContent({
             <span>{t("tasks:actions.markAsPlanned")}</span>
           </ContextMenuItem>
 
+          <ContextMenuItem onClick={() => handleChange("status", "to-triage")}>
+            <span>{t("tasks:actions.markAsToTriage")}</span>
+          </ContextMenuItem>
+
           <ContextMenuSeparator />
 
           <ContextMenuItem

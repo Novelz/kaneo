@@ -33,6 +33,9 @@ export function updateTaskLabelsInProject(
         updateTaskLabels(task, taskId, updater),
       ),
     })),
+    toTriageTasks: project.toTriageTasks.map((task) =>
+      updateTaskLabels(task, taskId, updater),
+    ),
     plannedTasks: project.plannedTasks.map((task) =>
       updateTaskLabels(task, taskId, updater),
     ),

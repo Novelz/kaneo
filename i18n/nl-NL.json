@@ -1053,7 +1053,8 @@
 			"in-review": "Ter beoordeling",
 			"done": "Gereed",
 			"archived": "Gearchiveerd",
-			"planned": "Gepland"
+			"planned": "Gepland",
+			"to-triage": "Te beoordelen"
 		},
 		"priority": {
 			"label": "Prioriteit",
@@ -1273,6 +1274,7 @@
 			"filter": "Filteren",
 			"addFilter": "Filter toevoegen...",
 			"sections": {
+				"to-triage": "Te beoordelen",
 				"planned": "Gepland",
 				"archived": "Gearchiveerd"
 			},
@@ -1391,6 +1393,7 @@
 		"actions": {
 			"archive": "Archiveren",
 			"markAsPlanned": "Markeren als gepland",
+			"markAsToTriage": "Markeren als te beoordelen",
 			"delete": "Verwijderen..."
 		},
 		"bulk": {

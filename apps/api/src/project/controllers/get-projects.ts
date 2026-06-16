@@ -38,6 +38,7 @@ async function getProjects(workspaceId: string, includeArchived = false) {
       },
       archivedTasks: [],
       plannedTasks: [],
+      toTriageTasks: [],
       columns: [],
     };
   });

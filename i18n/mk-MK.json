@@ -1267,7 +1267,8 @@
 			"in-review": "На преглед",
 			"done": "Завршено",
 			"archived": "Архивирано",
-			"planned": "Планирано"
+			"planned": "Планирано",
+			"to-triage": "За тријажа"
 		},
 		"priority": {
 			"label": "Приоритет",
@@ -1498,6 +1499,7 @@
 			"filter": "Филтрирај",
 			"addFilter": "Додади филтер...",
 			"sections": {
+				"to-triage": "За тријажа",
 				"planned": "Планирано",
 				"archived": "Архивирано"
 			},
@@ -1616,6 +1618,7 @@
 		"actions": {
 			"archive": "Архивирај",
 			"markAsPlanned": "Означи како планирана",
+			"markAsToTriage": "Означи за тријажа",
 			"delete": "Избриши..."
 		},
 		"bulk": {

@@ -253,6 +253,14 @@ async function getTasks(projectId: string, options: GetTasksOptions = {}) {
       externalLinks: taskExternalLinksMap.get(task.id) || [],
     }));
 
+  const toTriageTasks = paginatedTasks
+    .filter((task) => task.status === "to-triage")
+    .map((task) => ({
+      ...task,
+      labels: taskLabelsMap.get(task.id) || [],
+      externalLinks: taskExternalLinksMap.get(task.id) || [],
+    }));
+
   return {
     data: {
       id: project.id,
@@ -265,6 +273,7 @@ async function getTasks(projectId: string, options: GetTasksOptions = {}) {
       columns,
       archivedTasks,
       plannedTasks,
+      toTriageTasks,
     },
     pagination: usePagination
       ? {

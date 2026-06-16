@@ -1269,7 +1269,8 @@
 			"in-review": "검토 중",
 			"done": "완료",
 			"archived": "보관됨",
-			"planned": "계획됨"
+			"planned": "계획됨",
+			"to-triage": "분류 필요"
 		},
 		"priority": {
 			"label": "우선순위",
@@ -1500,6 +1501,7 @@
 			"filter": "필터",
 			"addFilter": "필터 추가...",
 			"sections": {
+				"to-triage": "분류 필요",
 				"planned": "계획됨",
 				"archived": "보관됨"
 			},
@@ -1618,6 +1620,7 @@
 		"actions": {
 			"archive": "보관",
 			"markAsPlanned": "계획됨으로 표시",
+			"markAsToTriage": "분류 필요로 표시",
 			"delete": "삭제..."
 		},
 		"bulk": {

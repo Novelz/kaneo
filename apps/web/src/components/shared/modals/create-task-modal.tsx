@@ -277,7 +277,11 @@ function CreateTaskModal({
           }
         }
 
-        if (task.status === "planned" || task.status === "archived") {
+        if (
+          task.status === "planned" ||
+          task.status === "archived" ||
+          task.status === "to-triage"
+        ) {
           return;
         }
 

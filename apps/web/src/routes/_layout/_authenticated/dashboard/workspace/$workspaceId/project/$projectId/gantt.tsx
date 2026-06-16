@@ -75,6 +75,7 @@ function RouteComponent() {
   const allTasks = useMemo(
     () => [
       ...(project?.columns.flatMap((column) => column.tasks) ?? []),
+      ...(project?.toTriageTasks ?? []),
       ...(project?.plannedTasks ?? []),
     ],
     [project],

@@ -239,6 +239,7 @@ function RouteComponent() {
 
     return {
       ...project,
+      toTriageTasks: filterTasks(project.toTriageTasks || []),
       plannedTasks: filterTasks(project.plannedTasks || []),
       archivedTasks: filterTasks(project.archivedTasks || []),
     };
@@ -298,6 +299,7 @@ function RouteComponent() {
     if (!filteredProject || sort.field === "position") return filteredProject;
     return {
       ...filteredProject,
+      toTriageTasks: sortTasks(filteredProject.toTriageTasks || [], sort),
       plannedTasks: sortTasks(filteredProject.plannedTasks || [], sort),
       archivedTasks: sortTasks(filteredProject.archivedTasks || [], sort),
     };

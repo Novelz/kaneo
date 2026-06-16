@@ -13,7 +13,7 @@ export type UpdateTaskStatusResult =
   | { applied: false }
   | { applied: true; before: TaskRow; after: TaskRow };
 
-const NON_COLUMN_STATUSES = new Set(["planned", "archived"]);
+const NON_COLUMN_STATUSES = new Set(["planned", "archived", "to-triage"]);
 
 export async function findTaskByNumber(projectId: string, taskNumber: number) {
   return db.query.taskTable.findFirst({

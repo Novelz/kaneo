@@ -312,7 +312,7 @@ function BacklogListView({
     title,
     icon: IconComponent,
     tasks,
-    showAddButton = false
+    showAddButton = false,
   }: {
     sectionId: string;
     title: string;

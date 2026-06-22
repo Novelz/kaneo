@@ -12,6 +12,7 @@ import {
   invitationTable,
   labelTable,
   notificationTable,
+  projectGithubRepoTable,
   projectTable,
   sessionTable,
   taskRelationTable,
@@ -107,7 +108,19 @@ export const projectTableRelations = relations(
     workflowRules: many(workflowRuleTable),
     githubIntegration: many(githubIntegrationTable),
     integrations: many(integrationTable),
+    githubRepos: many(projectGithubRepoTable),
     notificationWorkspaceProjects: many(userNotificationWorkspaceProjectTable),
+  }),
+);
+
+export const projectGithubRepoTableRelations = relations(
+  projectGithubRepoTable,
+  ({ one, many }) => ({
+    project: one(projectTable, {
+      fields: [projectGithubRepoTable.projectId],
+      references: [projectTable.id],
+    }),
+    externalLinks: many(externalLinkTable),
   }),
 );
 
@@ -368,6 +381,10 @@ export const externalLinkTableRelations = relations(
     integration: one(integrationTable, {
       fields: [externalLinkTable.integrationId],
       references: [integrationTable.id],
+    }),
+    githubRepo: one(projectGithubRepoTable, {
+      fields: [externalLinkTable.githubRepoId],
+      references: [projectGithubRepoTable.id],
     }),
   }),
 );

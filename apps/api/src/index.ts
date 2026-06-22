@@ -31,6 +31,7 @@ import giteaIntegration, { handleGiteaWebhookRoute } from "./gitea-integration";
 import githubIntegration, {
   handleGithubWebhookRoute,
 } from "./github-integration";
+import githubRepos from "./github-repos";
 import getInstanceStatus from "./instance/controllers/get-instance-status";
 import invitation from "./invitation";
 import label from "./label";
@@ -515,6 +516,7 @@ export function createApp() {
     "/github-integration",
     githubIntegration,
   );
+  const _githubReposApi = api.route("/github-repos", githubRepos);
   const giteaIntegrationApi = api.route("/gitea-integration", giteaIntegration);
   const genericWebhookIntegrationApi = api.route(
     "/generic-webhook-integration",
@@ -765,6 +767,7 @@ export type AppType =
   | typeof notificationPreferencesApi
   | typeof searchApi
   | typeof githubIntegrationApi
+  | typeof _githubReposApi
   | typeof giteaIntegrationApi
   | typeof genericWebhookIntegrationApi
   | typeof discordIntegrationApi

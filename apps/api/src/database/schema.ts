@@ -750,6 +750,37 @@ export const integrationTable = pgTable(
   ],
 );
 
+export const projectGithubRepoTable = pgTable(
+  "project_github_repo",
+  {
+    id: text("id")
+      .$defaultFn(() => createId())
+      .primaryKey(),
+    projectId: text("project_id")
+      .notNull()
+      .references(() => projectTable.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
+    repositoryOwner: text("repository_owner").notNull(),
+    repositoryName: text("repository_name").notNull(),
+    installationId: text("installation_id"),
+    createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+    updatedAt: timestamp("updated_at", { mode: "date" })
+      .defaultNow()
+      .$onUpdate(() => new Date())
+      .notNull(),
+  },
+  (table) => [
+    index("project_github_repo_projectId_idx").on(table.projectId),
+    unique("project_github_repo_unique").on(
+      table.projectId,
+      table.repositoryOwner,
+      table.repositoryName,
+    ),
+  ],
+);
+
 export const externalLinkTable = pgTable(
   "external_link",
   {
@@ -762,12 +793,20 @@ export const externalLinkTable = pgTable(
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
-    integrationId: text("integration_id")
-      .notNull()
-      .references(() => integrationTable.id, {
+    integrationId: text("integration_id").references(
+      () => integrationTable.id,
+      {
         onDelete: "cascade",
         onUpdate: "cascade",
-      }),
+      },
+    ),
+    githubRepoId: text("github_repo_id").references(
+      () => projectGithubRepoTable.id,
+      {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      },
+    ),
     resourceType: text("resource_type").notNull(),
     externalId: text("external_id").notNull(),
     url: text("url").notNull(),
@@ -782,6 +821,7 @@ export const externalLinkTable = pgTable(
   (table) => [
     index("external_link_taskId_idx").on(table.taskId),
     index("external_link_integrationId_idx").on(table.integrationId),
+    index("external_link_githubRepoId_idx").on(table.githubRepoId),
     index("external_link_externalId_idx").on(table.externalId),
     index("external_link_resourceType_idx").on(table.resourceType),
   ],

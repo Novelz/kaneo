@@ -1,10 +1,11 @@
-import { and, eq } from "drizzle-orm";
+import { and, eq, isNotNull } from "drizzle-orm";
 import db from "../../../database";
 import { externalLinkTable } from "../../../database/schema";
 
 export type CreateExternalLinkParams = {
   taskId: string;
-  integrationId: string;
+  integrationId?: string | null;
+  githubRepoId?: string | null;
   resourceType: "issue" | "pull_request" | "branch";
   externalId: string;
   url: string;
@@ -25,7 +26,8 @@ export async function createExternalLink(
     .insert(externalLinkTable)
     .values({
       taskId: params.taskId,
-      integrationId: params.integrationId,
+      integrationId: params.integrationId ?? null,
+      githubRepoId: params.githubRepoId ?? null,
       resourceType: params.resourceType,
       externalId: params.externalId,
       url: params.url,
@@ -52,6 +54,29 @@ export async function findExternalLink(
       eq(externalLinkTable.integrationId, integrationId),
       eq(externalLinkTable.resourceType, resourceType),
       eq(externalLinkTable.externalId, externalId),
+    ),
+  });
+}
+
+export async function findExternalLinkByRepo(
+  githubRepoId: string,
+  resourceType: string,
+  externalId: string,
+) {
+  return db.query.externalLinkTable.findFirst({
+    where: and(
+      eq(externalLinkTable.githubRepoId, githubRepoId),
+      eq(externalLinkTable.resourceType, resourceType),
+      eq(externalLinkTable.externalId, externalId),
+    ),
+  });
+}
+
+export async function getExternalLinksByGithubRepo(githubRepoId: string) {
+  return db.query.externalLinkTable.findMany({
+    where: and(
+      eq(externalLinkTable.githubRepoId, githubRepoId),
+      isNotNull(externalLinkTable.taskId),
     ),
   });
 }

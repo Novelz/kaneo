@@ -1,10 +1,16 @@
 import { useLocation, useNavigate } from "@tanstack/react-router";
-import { CalendarDays, SquareKanban, SquircleDashed } from "lucide-react";
+import {
+  CalendarDays,
+  Github,
+  SquareKanban,
+  SquircleDashed,
+} from "lucide-react";
 import { type ReactNode, useState } from "react";
 import MobileProjectNav from "@/components/common/header/mobile-project-nav";
 import ProjectCrumbSelect from "@/components/common/header/project-crumb-select";
 import WorkspaceCrumbSelect from "@/components/common/header/workspace-crumb-select";
 import Layout from "@/components/common/layout";
+import { GithubImportDialog } from "@/components/project/github-import-dialog";
 import CreateProjectModal from "@/components/shared/modals/create-project-modal";
 import { Button } from "@/components/ui/button";
 import { KbdSequence } from "@/components/ui/kbd";
@@ -184,6 +190,16 @@ export default function ProjectLayout({
 
           <div className="flex shrink-0 items-center gap-1.5">
             {headerActions}
+            <GithubImportDialog projectId={projectId}>
+              <Button
+                variant="ghost"
+                size="xs"
+                className="h-7 gap-1.5 px-2 text-xs text-muted-foreground"
+              >
+                <Github className="size-3.5" />
+                <span className="hidden sm:inline">Import Issues</span>
+              </Button>
+            </GithubImportDialog>
           </div>
         </div>
       </Layout.Header>

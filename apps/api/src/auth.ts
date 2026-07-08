@@ -2,6 +2,7 @@ import { apiKey } from "@better-auth/api-key";
 import {
   sendMagicLinkEmail,
   sendOtpEmail,
+  sendPasswordResetEmail,
   sendWorkspaceInvitationEmail,
 } from "@kaneo/email";
 import {
@@ -190,6 +191,21 @@ export const auth = betterAuth({
       verify: async ({ hash, password }) => {
         return await bcrypt.compare(password, hash);
       },
+    },
+    sendResetPassword: async ({ user, url }) => {
+      try {
+        const locale = await getUserLocale(user.email);
+        const subject =
+          getLocaleKey(locale) === "de"
+            ? "Passwort zurücksetzen für Kaneo"
+            : "Reset your Kaneo password";
+        await sendPasswordResetEmail(user.email, subject, {
+          resetLink: url,
+          userName: user.name,
+        });
+      } catch (error) {
+        console.error("Error sending password reset email", error);
+      }
     },
   },
   socialProviders: {

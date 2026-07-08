@@ -150,7 +150,11 @@
 			"oidcError": "Неуспешна најава со OIDC",
 			"googleError": "Неуспешна најава со Google",
 			"githubError": "Неуспешна најава со GitHub",
-			"discordError": "Неуспешна најава со Discord"
+			"discordError": "Неуспешна најава со Discord",
+			"errors": {
+				"oauth_code_verification_failed": "OAuth verification failed. Please try again.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Registration is currently disabled. You need a valid invitation to create an account."
+			}
 		},
 		"providers": {
 			"google": "Google",
@@ -218,7 +222,8 @@
 			"failedSignIn": "Неуспешна најава",
 			"signedInSuccess": "Успешно најавен",
 			"signingIn": "Се најавува...",
-			"signIn": "Најави се"
+			"signIn": "Најави се",
+			"forgotPassword": "Forgot password?"
 		},
 		"signUpForm": {
 			"fullName": "Целосно име",
@@ -294,6 +299,37 @@
 			"validation": {
 				"nameRequired": "Името е задолжително",
 				"nameShort": "Името мора да има најмалку 2 знаци"
+			}
+		},
+		"forgotPassword": {
+			"backToLogin": "Back to login",
+			"pageTitle": "Forgot Password",
+			"submit": "Send reset link",
+			"submitting": "Sending...",
+			"subtitle": "Enter your email and we'll send you a reset link",
+			"title": "Forgot your password?",
+			"toast": {
+				"failed": "Failed to send reset link",
+				"success": "If an account exists, a reset link has been sent"
+			}
+		},
+		"resetPassword": {
+			"backToLogin": "Back to login",
+			"confirmPassword": "Confirm password",
+			"invalidToken": "This reset link is invalid or has expired.",
+			"newPassword": "New password",
+			"pageTitle": "Reset Password",
+			"submit": "Reset password",
+			"submitting": "Resetting...",
+			"subtitle": "Enter a new password for your account",
+			"title": "Set a new password",
+			"toast": {
+				"failed": "Failed to reset password",
+				"success": "Password reset successfully"
+			},
+			"validation": {
+				"passwordsMismatch": "Passwords do not match",
+				"passwordTooShort": "Password must be at least 8 characters"
 			}
 		}
 	},
@@ -651,7 +687,10 @@
 			"on": "Вклучено",
 			"off": "Исклучено",
 			"newColumnPlaceholder": "Име на нова колона...",
-			"add": "Додади"
+			"add": "Додади",
+			"noColor": "No color",
+			"pickColorTitle": "Pick column color",
+			"toastColorUpdated": "Column color updated"
 		},
 		"githubIntegration": {
 			"validation": {
@@ -1000,7 +1039,9 @@
 				"pr_merged": "PR спoен",
 				"issue_opened": "Issue отворен",
 				"issue_closed": "Issue затворен"
-			}
+			},
+			"giteaHeading": "Gitea",
+			"giteaHint": "When a Gitea webhook event occurs, move the linked task to a column."
 		},
 		"externalLinks": {
 			"resources": "Ресурси",
@@ -1040,7 +1081,8 @@
 			"members": "Членови",
 			"invitations": "Покани",
 			"more": "Повеќе",
-			"backToBoard": "Назад на табла"
+			"backToBoard": "Назад на табла",
+			"users": "Users"
 		},
 		"projectList": {
 			"viewProject": "Погледни проект",
@@ -1690,7 +1732,8 @@
 				"complete": "Завршен",
 				"inProgress": "Во тек"
 			},
-			"noDueDate": "Без краен рок"
+			"noDueDate": "Без краен рок",
+			"emptyDescriptionReadOnly": "There are no projects in this workspace yet. Ask an admin to create one."
 		},
 		"search": {
 			"pageTitle": "Пребарување",
@@ -1730,7 +1773,8 @@
 		"roles": {
 			"owner": "Сопственик",
 			"admin": "Администратор",
-			"member": "Член"
+			"member": "Член",
+			"viewer": "Viewer"
 		},
 		"members": {
 			"pageTitle": "Членови",
@@ -1766,7 +1810,9 @@
 			"removeSuccess": "Членот на тимот е успешно отстранет",
 			"removeError": "Неуспешно отстранување на член на тим",
 			"cancelInviteSuccess": "Поканата е успешно откажана",
-			"cancelInviteError": "Неуспешно откажување на покана"
+			"cancelInviteError": "Неуспешно откажување на покана",
+			"roleUpdateError": "Failed to update role",
+			"roleUpdateSuccess": "Role updated"
 		},
 		"ghostUserModal": {
 			"title": "Add User Directly",
@@ -1819,5 +1865,20 @@
 		"branding": {
 			"poweredBy": "Овозможено од"
 		}
+	},
+	"users": {
+		"allStatuses": "All statuses",
+		"filterStatus": "Status",
+		"ganttView": "Gantt",
+		"listView": "List",
+		"noAssignedTasks": "No assigned tasks",
+		"noAssignedTasksSubtitle": "Tasks assigned to workspace members will appear here.",
+		"noScheduledTasks": "No scheduled tasks",
+		"noScheduledTasksSubtitle": "Assign start and due dates to tasks to see them in the Gantt view.",
+		"pageTitle": "Users",
+		"taskCount": "{{count}} task",
+		"taskCount_other": "{{count}} tasks",
+		"title": "Users Overview",
+		"userTaskHeader": "User / Task"
 	}
 }

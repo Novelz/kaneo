@@ -150,7 +150,11 @@
 			"oidcError": "Anmeldung mit OIDC fehlgeschlagen",
 			"googleError": "Anmeldung mit Google fehlgeschlagen",
 			"githubError": "Anmeldung mit GitHub fehlgeschlagen",
-			"discordError": "Anmeldung mit Discord fehlgeschlagen"
+			"discordError": "Anmeldung mit Discord fehlgeschlagen",
+			"errors": {
+				"oauth_code_verification_failed": "OAuth verification failed. Please try again.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Registration is currently disabled. You need a valid invitation to create an account."
+			}
 		},
 		"providers": {
 			"google": "Google",
@@ -218,7 +222,8 @@
 			"failedSignIn": "Anmeldung fehlgeschlagen",
 			"signedInSuccess": "Erfolgreich angemeldet",
 			"signingIn": "Wird angemeldet...",
-			"signIn": "Anmelden"
+			"signIn": "Anmelden",
+			"forgotPassword": "Forgot password?"
 		},
 		"signUpForm": {
 			"fullName": "Vollständiger Name",
@@ -294,6 +299,37 @@
 			"validation": {
 				"nameRequired": "Name ist erforderlich",
 				"nameShort": "Der Name muss mindestens 2 Zeichen lang sein"
+			}
+		},
+		"forgotPassword": {
+			"backToLogin": "Back to login",
+			"pageTitle": "Forgot Password",
+			"submit": "Send reset link",
+			"submitting": "Sending...",
+			"subtitle": "Enter your email and we'll send you a reset link",
+			"title": "Forgot your password?",
+			"toast": {
+				"failed": "Failed to send reset link",
+				"success": "If an account exists, a reset link has been sent"
+			}
+		},
+		"resetPassword": {
+			"backToLogin": "Back to login",
+			"confirmPassword": "Confirm password",
+			"invalidToken": "This reset link is invalid or has expired.",
+			"newPassword": "New password",
+			"pageTitle": "Reset Password",
+			"submit": "Reset password",
+			"submitting": "Resetting...",
+			"subtitle": "Enter a new password for your account",
+			"title": "Set a new password",
+			"toast": {
+				"failed": "Failed to reset password",
+				"success": "Password reset successfully"
+			},
+			"validation": {
+				"passwordsMismatch": "Passwords do not match",
+				"passwordTooShort": "Password must be at least 8 characters"
 			}
 		}
 	},
@@ -651,7 +687,10 @@
 			"on": "Ein",
 			"off": "Aus",
 			"newColumnPlaceholder": "Neuer Spaltenname...",
-			"add": "Hinzufügen"
+			"add": "Hinzufügen",
+			"noColor": "No color",
+			"pickColorTitle": "Pick column color",
+			"toastColorUpdated": "Column color updated"
 		},
 		"githubIntegration": {
 			"validation": {
@@ -1042,7 +1081,8 @@
 			"members": "Mitglieder",
 			"invitations": "Einladungen",
 			"more": "Mehr",
-			"backToBoard": "Zurück zum Board"
+			"backToBoard": "Zurück zum Board",
+			"users": "Users"
 		},
 		"projectList": {
 			"viewProject": "Projekt ansehen",
@@ -1692,7 +1732,8 @@
 				"complete": "Abgeschlossen",
 				"inProgress": "In Bearbeitung"
 			},
-			"noDueDate": "Kein Fälligkeitsdatum"
+			"noDueDate": "Kein Fälligkeitsdatum",
+			"emptyDescriptionReadOnly": "There are no projects in this workspace yet. Ask an admin to create one."
 		},
 		"search": {
 			"pageTitle": "Suche",
@@ -1732,7 +1773,8 @@
 		"roles": {
 			"owner": "Eigentümer",
 			"admin": "Admin",
-			"member": "Mitglied"
+			"member": "Mitglied",
+			"viewer": "Viewer"
 		},
 		"members": {
 			"pageTitle": "Mitglieder",
@@ -1768,7 +1810,9 @@
 			"removeSuccess": "Teammitglied erfolgreich entfernt",
 			"removeError": "Teammitglied konnte nicht entfernt werden",
 			"cancelInviteSuccess": "Einladung erfolgreich abgebrochen",
-			"cancelInviteError": "Einladung konnte nicht abgebrochen werden"
+			"cancelInviteError": "Einladung konnte nicht abgebrochen werden",
+			"roleUpdateError": "Failed to update role",
+			"roleUpdateSuccess": "Role updated"
 		},
 		"ghostUserModal": {
 			"title": "Benutzer direkt hinzufügen",
@@ -1821,5 +1865,20 @@
 		"branding": {
 			"poweredBy": "Bereitgestellt von"
 		}
+	},
+	"users": {
+		"allStatuses": "All statuses",
+		"filterStatus": "Status",
+		"ganttView": "Gantt",
+		"listView": "List",
+		"noAssignedTasks": "No assigned tasks",
+		"noAssignedTasksSubtitle": "Tasks assigned to workspace members will appear here.",
+		"noScheduledTasks": "No scheduled tasks",
+		"noScheduledTasksSubtitle": "Assign start and due dates to tasks to see them in the Gantt view.",
+		"pageTitle": "Users",
+		"taskCount": "{{count}} task",
+		"taskCount_other": "{{count}} tasks",
+		"title": "Users Overview",
+		"userTaskHeader": "User / Task"
 	}
 }

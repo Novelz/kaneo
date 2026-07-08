@@ -118,6 +118,36 @@ Kaneo requires several environment variables to be configured. The Docker Compos
 
 For complete configuration instructions, including all required environment variables, database setup for non-Docker deployments, and advanced settings, see the [documentation](https://kaneo.app/docs/core). Advanced deployments can still use the separate `ghcr.io/usekaneo/api` and `ghcr.io/usekaneo/web` images.
 
+## Password Reset
+
+Kaneo supports password reset via email when SMTP is configured. If SMTP is not set up, you can recover an account manually by retrieving the reset token directly from the database.
+
+**1. Trigger a reset request**
+
+Go to `/auth/forgot-password` in your browser and submit the email address of the account to recover. This stores a short-lived token in the database even when SMTP is not configured.
+
+**2. Retrieve the token from the database**
+
+```sql
+SELECT identifier, "expiresAt"
+FROM verification
+WHERE identifier LIKE 'reset-password:%'
+ORDER BY "expiresAt" DESC
+LIMIT 1;
+```
+
+The token is the part of `identifier` **after** the `reset-password:` prefix. Tokens expire after 1 hour.
+
+**3. Navigate to the reset page**
+
+Open the following URL in your browser, replacing `<token>` with the value from step 2:
+
+```
+http://<your-kaneo-url>/auth/reset-password?token=<token>
+```
+
+Enter and confirm your new password to complete the reset.
+
 ## Kubernetes Deployment
 
 If you're running Kubernetes, we provide a comprehensive Helm chart. Check out the [Helm chart documentation](./charts/kaneo/README.md) for detailed installation instructions, production configuration examples, TLS setup, and more.

@@ -1,24 +1,21 @@
 import { useMutation } from "@tanstack/react-query";
 import { authClient } from "@/lib/auth-client";
 
-type ChangePasswordRequest = {
-  currentPassword: string;
-  newPassword: string;
+type ForgetPasswordRequest = {
+  email: string;
+  redirectTo: string;
 };
 
-function useChangePassword() {
+function useForgetPassword() {
   return useMutation({
-    mutationFn: async ({
-      currentPassword,
-      newPassword,
-    }: ChangePasswordRequest) => {
-      const { data, error } = await authClient.changePassword({
-        currentPassword,
-        newPassword,
+    mutationFn: async ({ email, redirectTo }: ForgetPasswordRequest) => {
+      const { data, error } = await authClient.requestPasswordReset({
+        email,
+        redirectTo,
       });
 
       if (error) {
-        throw new Error(error.message || "Failed to change password");
+        throw new Error(error.message || "Failed to send reset link");
       }
 
       return data;
@@ -26,4 +23,4 @@ function useChangePassword() {
   });
 }
 
-export default useChangePassword;
+export default useForgetPassword;

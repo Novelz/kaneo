@@ -222,7 +222,39 @@
 			"failedSignIn": "Failed to sign in",
 			"signedInSuccess": "Signed in successfully",
 			"signingIn": "Signing In...",
-			"signIn": "Sign In"
+			"signIn": "Sign In",
+			"forgotPassword": "Forgot password?"
+		},
+		"forgotPassword": {
+			"pageTitle": "Forgot Password",
+			"title": "Forgot your password?",
+			"subtitle": "Enter your email and we'll send you a reset link",
+			"submit": "Send reset link",
+			"submitting": "Sending...",
+			"backToLogin": "Back to login",
+			"toast": {
+				"success": "If an account exists, a reset link has been sent",
+				"failed": "Failed to send reset link"
+			}
+		},
+		"resetPassword": {
+			"pageTitle": "Reset Password",
+			"title": "Set a new password",
+			"subtitle": "Enter a new password for your account",
+			"newPassword": "New password",
+			"confirmPassword": "Confirm password",
+			"submit": "Reset password",
+			"submitting": "Resetting...",
+			"backToLogin": "Back to login",
+			"invalidToken": "This reset link is invalid or has expired.",
+			"toast": {
+				"success": "Password reset successfully",
+				"failed": "Failed to reset password"
+			},
+			"validation": {
+				"passwordTooShort": "Password must be at least 8 characters",
+				"passwordsMismatch": "Passwords do not match"
+			}
 		},
 		"signUpForm": {
 			"fullName": "Full Name",

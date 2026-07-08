@@ -150,7 +150,11 @@
 			"oidcError": "Не вдалося увійти через OIDC",
 			"googleError": "Не вдалося увійти через Google",
 			"githubError": "Не вдалося увійти через GitHub",
-			"discordError": "Не вдалося увійти через Discord"
+			"discordError": "Не вдалося увійти через Discord",
+			"errors": {
+				"oauth_code_verification_failed": "OAuth verification failed. Please try again.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Registration is currently disabled. You need a valid invitation to create an account."
+			}
 		},
 		"providers": {
 			"google": "Google",
@@ -218,7 +222,8 @@
 			"failedSignIn": "Не вдалося увійти",
 			"signedInSuccess": "Вхід виконано успішно",
 			"signingIn": "Вхід...",
-			"signIn": "Увійти"
+			"signIn": "Увійти",
+			"forgotPassword": "Forgot password?"
 		},
 		"signUpForm": {
 			"fullName": "Повне ім'я",
@@ -294,6 +299,37 @@
 			"validation": {
 				"nameRequired": "Ім'я є обов'язковим",
 				"nameShort": "Ім'я має містити щонайменше 2 символи"
+			}
+		},
+		"forgotPassword": {
+			"backToLogin": "Back to login",
+			"pageTitle": "Forgot Password",
+			"submit": "Send reset link",
+			"submitting": "Sending...",
+			"subtitle": "Enter your email and we'll send you a reset link",
+			"title": "Forgot your password?",
+			"toast": {
+				"failed": "Failed to send reset link",
+				"success": "If an account exists, a reset link has been sent"
+			}
+		},
+		"resetPassword": {
+			"backToLogin": "Back to login",
+			"confirmPassword": "Confirm password",
+			"invalidToken": "This reset link is invalid or has expired.",
+			"newPassword": "New password",
+			"pageTitle": "Reset Password",
+			"submit": "Reset password",
+			"submitting": "Resetting...",
+			"subtitle": "Enter a new password for your account",
+			"title": "Set a new password",
+			"toast": {
+				"failed": "Failed to reset password",
+				"success": "Password reset successfully"
+			},
+			"validation": {
+				"passwordsMismatch": "Passwords do not match",
+				"passwordTooShort": "Password must be at least 8 characters"
 			}
 		}
 	},
@@ -582,7 +618,9 @@
 				"keyShort": "Ключ має містити щонайменше 2 символи",
 				"keyMax": "Ключ може містити не більше 8 символів",
 				"iconRequired": "Іконка є обов'язковою"
-			}
+			},
+			"importExportTasks": "Import/Export",
+			"importExportTasksDescription": "Import and export tasks."
 		},
 		"projectIntegrations": {
 			"pageTitle": "Інтеґрації проєкту",
@@ -649,7 +687,10 @@
 			"on": "Увімк.",
 			"off": "Вимк.",
 			"newColumnPlaceholder": "Назва нової колонки...",
-			"add": "Додати"
+			"add": "Додати",
+			"noColor": "No color",
+			"pickColorTitle": "Pick column color",
+			"toastColorUpdated": "Column color updated"
 		},
 		"githubIntegration": {
 			"validation": {
@@ -1039,7 +1080,9 @@
 			"projects": "Проєкти",
 			"members": "Учасники",
 			"invitations": "Запрошення",
-			"more": "Більше"
+			"more": "Більше",
+			"backToBoard": "Back to board",
+			"users": "Users"
 		},
 		"projectList": {
 			"viewProject": "Переглянути проєкт",
@@ -1256,7 +1299,9 @@
 					"yaml": "YAML"
 				}
 			}
-		}
+		},
+		"created": "created this task",
+		"moved": "moved task from \"{{from}}\" to \"{{to}}\""
 	},
 	"tasks": {
 		"status": {
@@ -1284,7 +1329,9 @@
 		},
 		"common": {
 			"selectTask": "Обрати завдання",
-			"loadingTask": "Завантаження завдання..."
+			"loadingTask": "Завантаження завдання...",
+			"taskNotFound": "Task not found",
+			"taskNotFoundDescription": "The task you are looking for does not exist or has been deleted."
 		},
 		"detail": {
 			"subtaskOf": "Підзавдання",
@@ -1689,7 +1736,8 @@
 				"complete": "Завершено",
 				"inProgress": "В роботі"
 			},
-			"noDueDate": "Без дати завершення"
+			"noDueDate": "Без дати завершення",
+			"emptyDescriptionReadOnly": "There are no projects in this workspace yet. Ask an admin to create one."
 		},
 		"search": {
 			"pageTitle": "Пошук",
@@ -1731,7 +1779,8 @@
 		"roles": {
 			"owner": "Власник",
 			"admin": "Адміністратор",
-			"member": "Учасник"
+			"member": "Учасник",
+			"viewer": "Viewer"
 		},
 		"members": {
 			"pageTitle": "Учасники",
@@ -1767,7 +1816,9 @@
 			"removeSuccess": "Учасника команди успішно видалено",
 			"removeError": "Не вдалося видалити учасника команди",
 			"cancelInviteSuccess": "Запрошення успішно скасовано",
-			"cancelInviteError": "Не вдалося скасувати запрошення"
+			"cancelInviteError": "Не вдалося скасувати запрошення",
+			"roleUpdateError": "Failed to update role",
+			"roleUpdateSuccess": "Role updated"
 		},
 		"ghostUserModal": {
 			"title": "Додати користувача безпосередньо",
@@ -1820,5 +1871,20 @@
 		"branding": {
 			"poweredBy": "Працює на"
 		}
+	},
+	"users": {
+		"allStatuses": "All statuses",
+		"filterStatus": "Status",
+		"ganttView": "Gantt",
+		"listView": "List",
+		"noAssignedTasks": "No assigned tasks",
+		"noAssignedTasksSubtitle": "Tasks assigned to workspace members will appear here.",
+		"noScheduledTasks": "No scheduled tasks",
+		"noScheduledTasksSubtitle": "Assign start and due dates to tasks to see them in the Gantt view.",
+		"pageTitle": "Users",
+		"taskCount": "{{count}} task",
+		"taskCount_other": "{{count}} tasks",
+		"title": "Users Overview",
+		"userTaskHeader": "User / Task"
 	}
 }

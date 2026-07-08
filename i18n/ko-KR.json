@@ -150,7 +150,11 @@
 			"oidcError": "OIDC 로그인에 실패했습니다",
 			"googleError": "Google 로그인에 실패했습니다",
 			"githubError": "GitHub 로그인에 실패했습니다",
-			"discordError": "Discord 로그인에 실패했습니다"
+			"discordError": "Discord 로그인에 실패했습니다",
+			"errors": {
+				"oauth_code_verification_failed": "OAuth verification failed. Please try again.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Registration is currently disabled. You need a valid invitation to create an account."
+			}
 		},
 		"providers": {
 			"google": "Google",
@@ -218,7 +222,8 @@
 			"failedSignIn": "로그인에 실패했습니다",
 			"signedInSuccess": "로그인되었습니다",
 			"signingIn": "로그인 중...",
-			"signIn": "로그인"
+			"signIn": "로그인",
+			"forgotPassword": "Forgot password?"
 		},
 		"signUpForm": {
 			"fullName": "이름",
@@ -294,6 +299,37 @@
 			"validation": {
 				"nameRequired": "이름은 필수입니다",
 				"nameShort": "이름은 2자 이상이어야 합니다"
+			}
+		},
+		"forgotPassword": {
+			"backToLogin": "Back to login",
+			"pageTitle": "Forgot Password",
+			"submit": "Send reset link",
+			"submitting": "Sending...",
+			"subtitle": "Enter your email and we'll send you a reset link",
+			"title": "Forgot your password?",
+			"toast": {
+				"failed": "Failed to send reset link",
+				"success": "If an account exists, a reset link has been sent"
+			}
+		},
+		"resetPassword": {
+			"backToLogin": "Back to login",
+			"confirmPassword": "Confirm password",
+			"invalidToken": "This reset link is invalid or has expired.",
+			"newPassword": "New password",
+			"pageTitle": "Reset Password",
+			"submit": "Reset password",
+			"submitting": "Resetting...",
+			"subtitle": "Enter a new password for your account",
+			"title": "Set a new password",
+			"toast": {
+				"failed": "Failed to reset password",
+				"success": "Password reset successfully"
+			},
+			"validation": {
+				"passwordsMismatch": "Passwords do not match",
+				"passwordTooShort": "Password must be at least 8 characters"
 			}
 		}
 	},
@@ -651,7 +687,10 @@
 			"on": "켜짐",
 			"off": "꺼짐",
 			"newColumnPlaceholder": "새 컬럼 이름...",
-			"add": "추가"
+			"add": "추가",
+			"noColor": "No color",
+			"pickColorTitle": "Pick column color",
+			"toastColorUpdated": "Column color updated"
 		},
 		"githubIntegration": {
 			"validation": {
@@ -1042,7 +1081,8 @@
 			"members": "멤버",
 			"invitations": "초대",
 			"more": "더 보기",
-			"backToBoard": "보드로 돌아가기"
+			"backToBoard": "보드로 돌아가기",
+			"users": "Users"
 		},
 		"projectList": {
 			"viewProject": "프로젝트 보기",
@@ -1692,7 +1732,8 @@
 				"complete": "완료",
 				"inProgress": "진행 중"
 			},
-			"noDueDate": "마감일 없음"
+			"noDueDate": "마감일 없음",
+			"emptyDescriptionReadOnly": "There are no projects in this workspace yet. Ask an admin to create one."
 		},
 		"search": {
 			"pageTitle": "검색",
@@ -1732,7 +1773,8 @@
 		"roles": {
 			"owner": "소유자",
 			"admin": "관리자",
-			"member": "멤버"
+			"member": "멤버",
+			"viewer": "Viewer"
 		},
 		"members": {
 			"pageTitle": "멤버",
@@ -1768,7 +1810,9 @@
 			"removeSuccess": "팀 멤버가 제거되었습니다",
 			"removeError": "팀 멤버 제거에 실패했습니다",
 			"cancelInviteSuccess": "초대가 취소되었습니다",
-			"cancelInviteError": "초대 취소에 실패했습니다"
+			"cancelInviteError": "초대 취소에 실패했습니다",
+			"roleUpdateError": "Failed to update role",
+			"roleUpdateSuccess": "Role updated"
 		},
 		"ghostUserModal": {
 			"title": "사용자 직접 추가",
@@ -1821,5 +1865,20 @@
 		"branding": {
 			"poweredBy": "제공"
 		}
+	},
+	"users": {
+		"allStatuses": "All statuses",
+		"filterStatus": "Status",
+		"ganttView": "Gantt",
+		"listView": "List",
+		"noAssignedTasks": "No assigned tasks",
+		"noAssignedTasksSubtitle": "Tasks assigned to workspace members will appear here.",
+		"noScheduledTasks": "No scheduled tasks",
+		"noScheduledTasksSubtitle": "Assign start and due dates to tasks to see them in the Gantt view.",
+		"pageTitle": "Users",
+		"taskCount": "{{count}} task",
+		"taskCount_other": "{{count}} tasks",
+		"title": "Users Overview",
+		"userTaskHeader": "User / Task"
 	}
 }

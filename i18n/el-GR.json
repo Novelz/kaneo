@@ -150,7 +150,11 @@
 			"oidcError": "Αποτυχία σύνδεσης με OIDC",
 			"googleError": "Αποτυχία σύνδεσης με Google",
 			"githubError": "Αποτυχία σύνδεσης με GitHub",
-			"discordError": "Αποτυχία σύνδεσης με Discord"
+			"discordError": "Αποτυχία σύνδεσης με Discord",
+			"errors": {
+				"oauth_code_verification_failed": "OAuth verification failed. Please try again.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Registration is currently disabled. You need a valid invitation to create an account."
+			}
 		},
 		"providers": {
 			"google": "Google",
@@ -218,7 +222,8 @@
 			"failedSignIn": "Αποτυχία σύνδεσης",
 			"signedInSuccess": "Η σύνδεση ολοκληρώθηκε με επιτυχία",
 			"signingIn": "Γίνεται σύνδεση...",
-			"signIn": "Σύνδεση"
+			"signIn": "Σύνδεση",
+			"forgotPassword": "Forgot password?"
 		},
 		"signUpForm": {
 			"fullName": "Ονοματεπώνυμο",
@@ -294,6 +299,37 @@
 			"validation": {
 				"nameRequired": "Το όνομα είναι υποχρεωτικό",
 				"nameShort": "Το όνομα πρέπει να έχει τουλάχιστον 2 χαρακτήρες"
+			}
+		},
+		"forgotPassword": {
+			"backToLogin": "Back to login",
+			"pageTitle": "Forgot Password",
+			"submit": "Send reset link",
+			"submitting": "Sending...",
+			"subtitle": "Enter your email and we'll send you a reset link",
+			"title": "Forgot your password?",
+			"toast": {
+				"failed": "Failed to send reset link",
+				"success": "If an account exists, a reset link has been sent"
+			}
+		},
+		"resetPassword": {
+			"backToLogin": "Back to login",
+			"confirmPassword": "Confirm password",
+			"invalidToken": "This reset link is invalid or has expired.",
+			"newPassword": "New password",
+			"pageTitle": "Reset Password",
+			"submit": "Reset password",
+			"submitting": "Resetting...",
+			"subtitle": "Enter a new password for your account",
+			"title": "Set a new password",
+			"toast": {
+				"failed": "Failed to reset password",
+				"success": "Password reset successfully"
+			},
+			"validation": {
+				"passwordsMismatch": "Passwords do not match",
+				"passwordTooShort": "Password must be at least 8 characters"
 			}
 		}
 	},
@@ -651,7 +687,10 @@
 			"on": "Ενεργό",
 			"off": "Ανενεργό",
 			"newColumnPlaceholder": "Όνομα νέας στήλης...",
-			"add": "Προσθήκη"
+			"add": "Προσθήκη",
+			"noColor": "No color",
+			"pickColorTitle": "Pick column color",
+			"toastColorUpdated": "Column color updated"
 		},
 		"githubIntegration": {
 			"validation": {
@@ -1000,7 +1039,9 @@
 				"pr_merged": "Συγχώνευση PR",
 				"issue_opened": "Άνοιγμα issue",
 				"issue_closed": "Κλείσιμο issue"
-			}
+			},
+			"giteaHeading": "Gitea",
+			"giteaHint": "When a Gitea webhook event occurs, move the linked task to a column."
 		},
 		"externalLinks": {
 			"resources": "Πόροι",
@@ -1040,7 +1081,8 @@
 			"members": "Μέλη",
 			"invitations": "Προσκλήσεις",
 			"more": "Περισσότερα",
-			"backToBoard": "Επιστροφή στον πίνακα"
+			"backToBoard": "Επιστροφή στον πίνακα",
+			"users": "Users"
 		},
 		"projectList": {
 			"viewProject": "Προβολή έργου",
@@ -1690,7 +1732,8 @@
 				"complete": "Ολοκληρωμένο",
 				"inProgress": "Σε εξέλιξη"
 			},
-			"noDueDate": "Χωρίς ημερομηνία λήξης"
+			"noDueDate": "Χωρίς ημερομηνία λήξης",
+			"emptyDescriptionReadOnly": "There are no projects in this workspace yet. Ask an admin to create one."
 		},
 		"search": {
 			"pageTitle": "Αναζήτηση",
@@ -1730,7 +1773,8 @@
 		"roles": {
 			"owner": "Ιδιοκτήτης",
 			"admin": "Διαχειριστής",
-			"member": "Μέλος"
+			"member": "Μέλος",
+			"viewer": "Viewer"
 		},
 		"members": {
 			"pageTitle": "Μέλη",
@@ -1766,7 +1810,9 @@
 			"removeSuccess": "Το μέλος της ομάδας αφαιρέθηκε με επιτυχία",
 			"removeError": "Αποτυχία αφαίρεσης μέλους ομάδας",
 			"cancelInviteSuccess": "Η πρόσκληση ακυρώθηκε με επιτυχία",
-			"cancelInviteError": "Αποτυχία ακύρωσης πρόσκλησης"
+			"cancelInviteError": "Αποτυχία ακύρωσης πρόσκλησης",
+			"roleUpdateError": "Failed to update role",
+			"roleUpdateSuccess": "Role updated"
 		},
 		"ghostUserModal": {
 			"title": "Add User Directly",
@@ -1819,5 +1865,20 @@
 		"branding": {
 			"poweredBy": "Υποστηρίζεται από"
 		}
+	},
+	"users": {
+		"allStatuses": "All statuses",
+		"filterStatus": "Status",
+		"ganttView": "Gantt",
+		"listView": "List",
+		"noAssignedTasks": "No assigned tasks",
+		"noAssignedTasksSubtitle": "Tasks assigned to workspace members will appear here.",
+		"noScheduledTasks": "No scheduled tasks",
+		"noScheduledTasksSubtitle": "Assign start and due dates to tasks to see them in the Gantt view.",
+		"pageTitle": "Users",
+		"taskCount": "{{count}} task",
+		"taskCount_other": "{{count}} tasks",
+		"title": "Users Overview",
+		"userTaskHeader": "User / Task"
 	}
 }

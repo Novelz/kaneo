@@ -150,7 +150,11 @@
 			"oidcError": "Échec de la connexion avec OIDC",
 			"googleError": "Échec de la connexion avec Google",
 			"githubError": "Échec de la connexion avec GitHub",
-			"discordError": "Échec de la connexion avec Discord"
+			"discordError": "Échec de la connexion avec Discord",
+			"errors": {
+				"oauth_code_verification_failed": "OAuth verification failed. Please try again.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Registration is currently disabled. You need a valid invitation to create an account."
+			}
 		},
 		"providers": {
 			"google": "Google",
@@ -218,7 +222,8 @@
 			"failedSignIn": "Échec de la connexion",
 			"signedInSuccess": "Connexion réussie",
 			"signingIn": "Connexion...",
-			"signIn": "Se connecter"
+			"signIn": "Se connecter",
+			"forgotPassword": "Forgot password?"
 		},
 		"signUpForm": {
 			"fullName": "Nom complet",
@@ -294,6 +299,37 @@
 			"validation": {
 				"nameRequired": "Le nom est requis",
 				"nameShort": "Le nom doit contenir au moins 2 caractères"
+			}
+		},
+		"forgotPassword": {
+			"backToLogin": "Back to login",
+			"pageTitle": "Forgot Password",
+			"submit": "Send reset link",
+			"submitting": "Sending...",
+			"subtitle": "Enter your email and we'll send you a reset link",
+			"title": "Forgot your password?",
+			"toast": {
+				"failed": "Failed to send reset link",
+				"success": "If an account exists, a reset link has been sent"
+			}
+		},
+		"resetPassword": {
+			"backToLogin": "Back to login",
+			"confirmPassword": "Confirm password",
+			"invalidToken": "This reset link is invalid or has expired.",
+			"newPassword": "New password",
+			"pageTitle": "Reset Password",
+			"submit": "Reset password",
+			"submitting": "Resetting...",
+			"subtitle": "Enter a new password for your account",
+			"title": "Set a new password",
+			"toast": {
+				"failed": "Failed to reset password",
+				"success": "Password reset successfully"
+			},
+			"validation": {
+				"passwordsMismatch": "Passwords do not match",
+				"passwordTooShort": "Password must be at least 8 characters"
 			}
 		}
 	},
@@ -651,7 +687,10 @@
 			"on": "On",
 			"off": "Off",
 			"newColumnPlaceholder": "Nouveau nom de colonne...",
-			"add": "Ajouter"
+			"add": "Ajouter",
+			"noColor": "No color",
+			"pickColorTitle": "Pick column color",
+			"toastColorUpdated": "Column color updated"
 		},
 		"githubIntegration": {
 			"validation": {
@@ -1000,7 +1039,9 @@
 				"pr_merged": "PR Fusionné",
 				"issue_opened": "Problème Ouvert",
 				"issue_closed": "Problème Fermé"
-			}
+			},
+			"giteaHeading": "Gitea",
+			"giteaHint": "When a Gitea webhook event occurs, move the linked task to a column."
 		},
 		"externalLinks": {
 			"resources": "Ressources",
@@ -1040,7 +1081,8 @@
 			"members": "Membres",
 			"invitations": "Invitations",
 			"more": "Plus",
-			"backToBoard": "Retour au tableau"
+			"backToBoard": "Retour au tableau",
+			"users": "Users"
 		},
 		"projectList": {
 			"viewProject": "Voir le projet",
@@ -1690,7 +1732,8 @@
 				"complete": "Terminé",
 				"inProgress": "En cours"
 			},
-			"noDueDate": "Pas de date d'échéance"
+			"noDueDate": "Pas de date d'échéance",
+			"emptyDescriptionReadOnly": "There are no projects in this workspace yet. Ask an admin to create one."
 		},
 		"search": {
 			"pageTitle": "Rechercher",
@@ -1730,7 +1773,8 @@
 		"roles": {
 			"owner": "Propriétaire",
 			"admin": "Admin",
-			"member": "Membre"
+			"member": "Membre",
+			"viewer": "Viewer"
 		},
 		"members": {
 			"pageTitle": "Membres",
@@ -1766,7 +1810,9 @@
 			"removeSuccess": "Membre de l'équipe supprimé avec succès",
 			"removeError": "Échec de la suppression du membre de l'équipe",
 			"cancelInviteSuccess": "Invitation annulée avec succès",
-			"cancelInviteError": "Échec de l'annulation de l'invitation"
+			"cancelInviteError": "Échec de l'annulation de l'invitation",
+			"roleUpdateError": "Failed to update role",
+			"roleUpdateSuccess": "Role updated"
 		},
 		"ghostUserModal": {
 			"title": "Ajouter un utilisateur directement",
@@ -1819,5 +1865,20 @@
 		"branding": {
 			"poweredBy": "Propulsé par"
 		}
+	},
+	"users": {
+		"allStatuses": "All statuses",
+		"filterStatus": "Status",
+		"ganttView": "Gantt",
+		"listView": "List",
+		"noAssignedTasks": "No assigned tasks",
+		"noAssignedTasksSubtitle": "Tasks assigned to workspace members will appear here.",
+		"noScheduledTasks": "No scheduled tasks",
+		"noScheduledTasksSubtitle": "Assign start and due dates to tasks to see them in the Gantt view.",
+		"pageTitle": "Users",
+		"taskCount": "{{count}} task",
+		"taskCount_other": "{{count}} tasks",
+		"title": "Users Overview",
+		"userTaskHeader": "User / Task"
 	}
 }

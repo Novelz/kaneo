@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { LayoutGrid, Plus } from "lucide-react";
+import { GripVertical, LayoutGrid, Plus } from "lucide-react";
+import type { DragEvent } from "react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import WorkspaceLayout from "@/components/common/workspace-layout";
@@ -27,6 +28,7 @@ import {
 } from "@/components/ui/table";
 import icons from "@/constants/project-icons";
 import { shortcuts } from "@/constants/shortcuts";
+import { useReorderProjects } from "@/hooks/mutations/project/use-reorder-projects";
 import useGetProjects from "@/hooks/queries/project/use-get-projects";
 import { useRegisterShortcuts } from "@/hooks/use-keyboard-shortcuts";
 import { useWorkspacePermission } from "@/hooks/use-workspace-permission";
@@ -46,8 +48,35 @@ function RouteComponent() {
   const { data: projects, isLoading } = useGetProjects({
     workspaceId,
   });
-  const { canCreateProjects } = useWorkspacePermission();
+  const { canCreateProjects, canManageProjects } = useWorkspacePermission();
   const canCreate = canCreateProjects();
+  const canReorder = canManageProjects();
+  const { mutate: reorderProjects } = useReorderProjects();
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (e: DragEvent, index: number) => {
+    e.preventDefault();
+    if (draggedIndex === null || draggedIndex === index || !projects) return;
+
+    const reordered = [...projects];
+    const [removed] = reordered.splice(draggedIndex, 1);
+    reordered.splice(index, 0, removed);
+
+    const updates = reordered.map((project, i) => ({
+      id: project.id,
+      position: i,
+    }));
+    reorderProjects({ workspaceId, projects: updates });
+    setDraggedIndex(index);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+  };
 
   const handleCreateProject = () => {
     if (!canCreate) return;
@@ -92,6 +121,7 @@ function RouteComponent() {
           <Table>
             <TableHeader>
               <TableRow>
+                {canReorder && <TableHead className="w-8" />}
                 <TableHead className="text-foreground font-medium">
                   {t("workspace:projects.title")}
                 </TableHead>
@@ -109,6 +139,11 @@ function RouteComponent() {
             <TableBody>
               {[1, 2, 3].map((i) => (
                 <TableRow key={i}>
+                  {canReorder && (
+                    <TableCell className="py-3">
+                      <Skeleton className="h-4 w-4" />
+                    </TableCell>
+                  )}
                   <TableCell className="py-3">
                     <div className="flex items-center gap-3">
                       <Skeleton className="h-5 w-5" />
@@ -206,6 +241,7 @@ function RouteComponent() {
         <Table>
           <TableHeader className="p-4">
             <TableRow>
+              {canReorder && <TableHead className="w-8" />}
               <TableHead className="text-foreground font-medium">
                 {t("workspace:projects.title")}
               </TableHead>
@@ -221,7 +257,7 @@ function RouteComponent() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {projects?.map((project) => {
+            {projects?.map((project, index) => {
               if (!project || !project.id || !project.statistics) return null;
 
               const IconComponent =
@@ -247,7 +283,25 @@ function RouteComponent() {
                   key={project.id}
                   className="cursor-pointer"
                   onClick={() => handleProjectClick(project.id)}
+                  onDragOver={(e) => handleDragOver(e, index)}
+                  onDragEnd={handleDragEnd}
                 >
+                  {canReorder && (
+                    <TableCell
+                      className="py-3"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <button
+                        type="button"
+                        aria-label={t("workspace:projects.dragToReorder")}
+                        draggable
+                        onDragStart={() => handleDragStart(index)}
+                        className="inline-flex cursor-grab select-none"
+                      >
+                        <GripVertical className="w-4 h-4 text-muted-foreground" />
+                      </button>
+                    </TableCell>
+                  )}
                   <TableCell className="py-3">
                     <div className="flex items-center gap-3">
                       <IconComponent className="w-5 h-5 text-muted-foreground" />

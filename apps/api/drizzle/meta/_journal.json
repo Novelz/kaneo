@@ -232,6 +232,13 @@
 			"when": 1781625942775,
 			"tag": "0032_careless_night_thrasher",
 			"breakpoints": true
+		},
+		{
+			"idx": 33,
+			"version": "7",
+			"when": 1783514997780,
+			"tag": "0033_majestic_mad_thinker",
+			"breakpoints": true
 		}
 	]
 }

@@ -1,3 +1,4 @@
+import { eq, sql } from "drizzle-orm";
 import db from "../../database";
 import { columnTable, projectTable } from "../../database/schema";
 
@@ -33,6 +34,15 @@ async function createProject(
   slug: string,
 ) {
   return db.transaction(async (tx) => {
+    const [maxPos] = await tx
+      .select({
+        maxPosition: sql<number>`COALESCE(MAX(${projectTable.position}), -1)`,
+      })
+      .from(projectTable)
+      .where(eq(projectTable.workspaceId, workspaceId));
+
+    const position = (maxPos?.maxPosition ?? -1) + 1;
+
     const [createdProject] = await tx
       .insert(projectTable)
       .values({
@@ -40,6 +50,7 @@ async function createProject(
         name,
         icon,
         slug,
+        position,
       })
       .returning();
 

@@ -1733,7 +1733,8 @@
 				"complete": "Complete",
 				"inProgress": "In progress"
 			},
-			"noDueDate": "No due date"
+			"noDueDate": "No due date",
+			"dragToReorder": "Drag to reorder"
 		},
 		"search": {
 			"pageTitle": "Search",

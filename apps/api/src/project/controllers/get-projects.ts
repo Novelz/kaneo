@@ -13,6 +13,10 @@ async function getProjects(workspaceId: string, includeArchived = false) {
     with: {
       tasks: true,
     },
+    orderBy: (projects, { asc }) => [
+      asc(projects.position),
+      asc(projects.createdAt),
+    ],
   });
 
   const projectsWithStatistics = projects.map((project) => {

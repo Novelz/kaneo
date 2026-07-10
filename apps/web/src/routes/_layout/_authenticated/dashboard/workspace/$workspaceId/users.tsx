@@ -77,6 +77,8 @@ function RouteComponent() {
     new Set(),
   );
   const timelineTrackRef = useRef<HTMLDivElement>(null);
+  const ganttScrollRef = useRef<HTMLDivElement>(null);
+  const ganttStickyColumnRef = useRef<HTMLDivElement>(null);
   const [pixelsPerDay, setPixelsPerDay] = useState(44);
 
   const dayColumnWidthRem = isMobile ? 3.125 : 2.75;
@@ -143,6 +145,12 @@ function RouteComponent() {
     return users.flatMap((user) =>
       user.projects.flatMap((project) =>
         project.tasks
+          .filter(
+            (task) =>
+              !task.isFinal &&
+              (selectedStatuses.size === 0 ||
+                selectedStatuses.has(task.status)),
+          )
           .map((apiTask) => {
             const parsedStart =
               parseTaskDate(apiTask.startDate) ??
@@ -182,7 +190,7 @@ function RouteComponent() {
           .filter((row): row is NonNullable<typeof row> => row !== null),
       ),
     );
-  }, [users]);
+  }, [users, selectedStatuses]);
 
   const timeline = useMemo(() => {
     if (ganttRows.length === 0) return null;
@@ -228,6 +236,24 @@ function RouteComponent() {
     return () => observer.disconnect();
   }, [timeline]);
 
+  useLayoutEffect(() => {
+    if (view !== "gantt" || !timeline) return;
+    const scrollElement = ganttScrollRef.current;
+    const trackElement = timelineTrackRef.current;
+    if (!scrollElement || !trackElement) return;
+
+    const todayIndex = timeline.days.findIndex((day) => isToday(day));
+    if (todayIndex === -1) return;
+
+    const dayWidth = trackElement.clientWidth / timeline.days.length;
+    const stickyWidth = ganttStickyColumnRef.current?.clientWidth ?? 0;
+    const timelineViewportWidth = scrollElement.clientWidth - stickyWidth;
+    const scrollLeft =
+      todayIndex * dayWidth + dayWidth / 2 - timelineViewportWidth / 2;
+
+    scrollElement.scrollLeft = Math.max(0, scrollLeft);
+  }, [view, timeline]);
+
   const ganttRowsByUser = useMemo(() => {
     const map = new Map<string, UserTask[]>();
     for (const row of ganttRows) {
@@ -248,7 +274,7 @@ function RouteComponent() {
         title={t("users:pageTitle")}
         headerActions={
           <div className="flex items-center gap-2">
-            {view === "list" && allStatuses.length > 0 && (
+            {allStatuses.length > 0 && (
               <DropdownMenu>
                 <DropdownMenuTrigger
                   render={
@@ -490,11 +516,15 @@ function RouteComponent() {
             </div>
           </div>
         ) : (
-          <div className="min-h-0 flex-1 overflow-auto overscroll-x-contain [-webkit-overflow-scrolling:touch]">
+          <div
+            ref={ganttScrollRef}
+            className="min-h-0 flex-1 overflow-auto overscroll-x-contain [-webkit-overflow-scrolling:touch]"
+          >
             <div className="relative min-w-max touch-pan-x touch-pan-y">
               {/* Timeline header */}
               <div className="sticky top-0 z-20 flex border-b border-border bg-background/95 backdrop-blur">
                 <div
+                  ref={ganttStickyColumnRef}
                   className="sticky left-0 z-30 shrink-0 border-r border-border bg-background px-2 py-2.5 sm:px-4 sm:py-3"
                   style={{
                     width: isMobile ? `${taskColumnWidthRem}rem` : "20rem",

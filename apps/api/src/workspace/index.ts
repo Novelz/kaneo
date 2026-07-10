@@ -83,6 +83,7 @@ const workspace = new Hono<{
                               startDate: v.nullable(v.string()),
                               dueDate: v.nullable(v.string()),
                               projectId: v.string(),
+                              isFinal: v.boolean(),
                             }),
                           ),
                         }),

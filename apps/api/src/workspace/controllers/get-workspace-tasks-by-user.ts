@@ -17,6 +17,7 @@ type TaskEntry = {
   dueDate: string | null;
   projectId: string;
   columnColor: string | null;
+  isFinal: boolean;
 };
 
 type ProjectEntry = {
@@ -55,6 +56,7 @@ async function getWorkspaceTasksByUser(
       assigneeEmail: userTable.email,
       assigneeImage: userTable.image,
       columnColor: columnTable.color,
+      isFinal: columnTable.isFinal,
     })
     .from(taskTable)
     .innerJoin(projectTable, eq(taskTable.projectId, projectTable.id))
@@ -117,6 +119,7 @@ async function getWorkspaceTasksByUser(
       dueDate: row.dueDate ? row.dueDate.toISOString() : null,
       projectId: row.projectId,
       columnColor: row.columnColor ?? null,
+      isFinal: row.isFinal ?? false,
     });
 
     user.taskCount += 1;

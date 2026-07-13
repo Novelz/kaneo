@@ -1605,7 +1605,8 @@
 			"updateDatesError": "Αποτυχία ενημέρωσης ημερομηνιών εργασίας",
 			"resizeStart": "Αλλαγή μεγέθους ημερομηνίας έναρξης",
 			"resizeDue": "Αλλαγή μεγέθους ημερομηνίας λήξης",
-			"taskAriaLabel": "{{title}} — άνοιγμα ή σύρσιμο για μετακίνηση"
+			"taskAriaLabel": "{{title}} — άνοιγμα ή σύρσιμο για μετακίνηση",
+			"showDoneTasks": "Show Done"
 		},
 		"delete": {
 			"title": "Διαγραφή εργασίας;",
@@ -1733,7 +1734,8 @@
 				"inProgress": "Σε εξέλιξη"
 			},
 			"noDueDate": "Χωρίς ημερομηνία λήξης",
-			"emptyDescriptionReadOnly": "There are no projects in this workspace yet. Ask an admin to create one."
+			"emptyDescriptionReadOnly": "There are no projects in this workspace yet. Ask an admin to create one.",
+			"dragToReorder": "Drag to reorder"
 		},
 		"search": {
 			"pageTitle": "Αναζήτηση",
@@ -1879,6 +1881,7 @@
 		"taskCount": "{{count}} task",
 		"taskCount_other": "{{count}} tasks",
 		"title": "Users Overview",
-		"userTaskHeader": "User / Task"
+		"userTaskHeader": "User / Task",
+		"showDoneTasks": "Show Done"
 	}
 }

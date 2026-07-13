@@ -1607,7 +1607,8 @@
 			"updateDatesError": "Не вдалося оновити дати завдання",
 			"resizeStart": "Змінити дату початку",
 			"resizeDue": "Змінити дату завершення",
-			"taskAriaLabel": "{{title}} — відкрити або перетягнути для переміщення"
+			"taskAriaLabel": "{{title}} — відкрити або перетягнути для переміщення",
+			"showDoneTasks": "Show Done"
 		},
 		"delete": {
 			"title": "Видалити завдання?",
@@ -1737,7 +1738,8 @@
 				"inProgress": "В роботі"
 			},
 			"noDueDate": "Без дати завершення",
-			"emptyDescriptionReadOnly": "There are no projects in this workspace yet. Ask an admin to create one."
+			"emptyDescriptionReadOnly": "There are no projects in this workspace yet. Ask an admin to create one.",
+			"dragToReorder": "Drag to reorder"
 		},
 		"search": {
 			"pageTitle": "Пошук",
@@ -1885,6 +1887,7 @@
 		"taskCount": "{{count}} task",
 		"taskCount_other": "{{count}} tasks",
 		"title": "Users Overview",
-		"userTaskHeader": "User / Task"
+		"userTaskHeader": "User / Task",
+		"showDoneTasks": "Show Done"
 	}
 }

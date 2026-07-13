@@ -20,6 +20,7 @@ import PageTitle from "@/components/page-title";
 import TaskDetailsSheet from "@/components/task/task-details-sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 import { useGetTasks } from "@/hooks/queries/task/use-get-tasks";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/cn";
@@ -53,6 +54,7 @@ function RouteComponent() {
   const { data: project } = useGetTasks(projectId);
   const weekStartsOn = useUserPreferencesStore((state) => state.weekStartsOn);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showDoneTasks, setShowDoneTasks] = useState(false);
   const isMobile = useIsMobile();
   const [isTaskRailOpen, setIsTaskRailOpen] = useState(false);
 
@@ -74,15 +76,24 @@ function RouteComponent() {
 
   const allTasks = useMemo(
     () => [
-      ...(project?.columns.flatMap((column) => column.tasks) ?? []),
-      ...(project?.toTriageTasks ?? []),
-      ...(project?.plannedTasks ?? []),
+      ...(project?.columns.flatMap((column) =>
+        column.tasks.map((task) => ({ ...task, isFinal: column.isFinal })),
+      ) ?? []),
+      ...(project?.toTriageTasks.map((task) => ({
+        ...task,
+        isFinal: false,
+      })) ?? []),
+      ...(project?.plannedTasks.map((task) => ({
+        ...task,
+        isFinal: false,
+      })) ?? []),
     ],
     [project],
   );
 
   const parsedTasks = useMemo(() => {
     return allTasks
+      .filter((task) => task.isFinal === showDoneTasks)
       .map((task) => {
         const parsedStart =
           parseTaskDate(task.startDate) ?? parseTaskDate(task.dueDate);
@@ -105,7 +116,7 @@ function RouteComponent() {
         (left, right) =>
           left.scheduleStart.getTime() - right.scheduleStart.getTime(),
       );
-  }, [allTasks]);
+  }, [allTasks, showDoneTasks]);
 
   const scheduledTasks = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -195,6 +206,17 @@ function RouteComponent() {
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder={t("tasks:gantt.searchPlaceholder")}
                 className="h-9 min-h-11 touch-manipulation sm:h-8 sm:min-h-0 [&_[data-slot=input]]:pl-8 [&_[data-slot=input]]:text-xs"
+              />
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              <span className="hidden text-xs text-muted-foreground sm:inline">
+                {t("tasks:gantt.showDoneTasks")}
+              </span>
+              <Switch
+                checked={showDoneTasks}
+                onCheckedChange={setShowDoneTasks}
+                aria-label={t("tasks:gantt.showDoneTasks")}
               />
             </div>
 

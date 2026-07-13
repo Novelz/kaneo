@@ -31,6 +31,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/menu";
+import { Switch } from "@/components/ui/switch";
 import { useGetWorkspaceTasksByUser } from "@/hooks/queries/workspace/use-get-workspace-tasks-by-user";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/cn";
@@ -76,6 +77,7 @@ function RouteComponent() {
   const [selectedStatuses, setSelectedStatuses] = useState<Set<string>>(
     new Set(),
   );
+  const [showDoneTasks, setShowDoneTasks] = useState(false);
   const timelineTrackRef = useRef<HTMLDivElement>(null);
   const ganttScrollRef = useRef<HTMLDivElement>(null);
   const ganttStickyColumnRef = useRef<HTMLDivElement>(null);
@@ -147,7 +149,7 @@ function RouteComponent() {
         project.tasks
           .filter(
             (task) =>
-              !task.isFinal &&
+              task.isFinal === showDoneTasks &&
               (selectedStatuses.size === 0 ||
                 selectedStatuses.has(task.status)),
           )
@@ -190,7 +192,7 @@ function RouteComponent() {
           .filter((row): row is NonNullable<typeof row> => row !== null),
       ),
     );
-  }, [users, selectedStatuses]);
+  }, [users, selectedStatuses, showDoneTasks]);
 
   const timeline = useMemo(() => {
     if (ganttRows.length === 0) return null;
@@ -274,6 +276,18 @@ function RouteComponent() {
         title={t("users:pageTitle")}
         headerActions={
           <div className="flex items-center gap-2">
+            {view === "gantt" && (
+              <div className="flex items-center gap-1.5">
+                <span className="hidden text-xs text-muted-foreground sm:inline">
+                  {t("users:showDoneTasks")}
+                </span>
+                <Switch
+                  checked={showDoneTasks}
+                  onCheckedChange={setShowDoneTasks}
+                  aria-label={t("users:showDoneTasks")}
+                />
+              </div>
+            )}
             {allStatuses.length > 0 && (
               <DropdownMenu>
                 <DropdownMenuTrigger
